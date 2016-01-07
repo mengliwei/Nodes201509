@@ -40,16 +40,16 @@
     //    -function(num){}(100);
 
 
-    //4、虽然函数体中“return”下面的代码是不执行的,但是需要进行私有作用域下的预解释;而“return”后面紧跟着的是返回的值,是不参与预解释的;
-    //    var a = 15;
-    //    function fn() {
-    //        //预解释：var a; ->a是私有的变量
-    //        //代码执行：
-    //        console.log(a);//->undefined
-    //        return function () {};//->函数体中return下面的代码都不在执行的 ->return xxxfff111; 返回的是function这个函数对应的地址
-    //        var a = 13;
-    //    }
-    //    fn();
+    //    4、虽然函数体中“return”下面的代码是不执行的,但是需要进行私有作用域下的预解释;而“return”后面紧跟着的是返回的值,是不参与预解释的;
+    //        var a = 15;
+    //        function fn() {
+    //            //预解释：var a; ->a是私有的变量
+    //            //代码执行：
+    //            console.log(a);//->undefined
+    //            return function () {};//->函数体中return下面的代码都不在执行的 ->return xxxfff111; 返回的是function这个函数对应的地址
+    //            var a = 13;
+    //        }
+    //        fn();
 
 
     //5、在预解释的时候,如果发现了名字冲突了,不需要重新的声明,但是需要重新的赋值
