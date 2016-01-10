@@ -41,14 +41,14 @@
     //3)不立即销毁
     //当第一次执行fn返回一个xxxfff111,虽然没有被外面直接的占用,但是紧接着要执行一次,所以此时的xxxfff111临时不能销毁,同理对应的作用域A暂时也不能销毁
     //当xxxfff111执行完成后，都销毁了
-    //    function fn() {
-    //        var num = 10;
-    //        return function () {
-    //            num++;
-    //            console.log(num);
-    //        }
-    //    }
-    //    fn()();//->先执行fn,然后把fn执行的返回值xxxfff111紧接着在执行
+        function fn() {
+            var num = 10;
+            return function () {
+                num++;
+                console.log(num);
+            }
+        }
+        fn()();//->先执行fn,然后把fn执行的返回值xxxfff111紧接着在执行
 </script>
 </body>
 </html>
