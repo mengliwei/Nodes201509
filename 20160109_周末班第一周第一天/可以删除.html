@@ -6,24 +6,27 @@
 </head>
 <body>
 <script type="text/javascript">
-//    var num = 2;
-//    var obj = {
-//        num: 4,
-//        fn: (function () {
-//            this.num * 2;
-//            num = num * 2;
-//            var num = 3;
-//            return function () {
-//                this.num *= 2;
-//                num *= 3;
-//                alert(num);
-//            }
-//        })()
-//    };
-//    var fn = obj.fn;
-//alert(num);
-    //fn();
-    //obj.fn();
+    var num = 2;
+    var obj = {
+        num: 4,
+        fn: (function () {
+            this.num *= 2;
+            num = num * 2;
+            var num = 3;
+            return function () {
+                this.num *= 2;
+                num *= 3;
+                alert(num);
+            }
+        })()
+    };
+    var fn = obj.fn;
+alert(num);
+    alert(window.num);
+    fn();
+    obj.fn();
+
+    alert(obj.num);
 
 
 
