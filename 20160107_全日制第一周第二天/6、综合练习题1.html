@@ -22,29 +22,29 @@
 
     //思考题：
     //1、
-    //    function fn(i) {
-    //        return function (n) {
-    //            console.log(n + (i++));
-    //        }
-    //    }
-    //    var f = fn(10);
-    //    f(20);
-    //    fn(20)(40);
-    //    fn(30)(50);
-    //    f(30);
+    function fn(i) {
+        return function (n) {
+            console.log(n + (i++));
+        }
+    }
+    var f = fn(10);
+    f(20);
+    fn(20)(40);
+    fn(30)(50);
+    f(30);
 
     //2、
-    //    var i = 10;
-    //    function fn() {
-    //        return function (n) {
-    //            console.log(n + (++i));
-    //        }
-    //    }
-    //    var f = fn();
-    //    f(20);
-    //    fn()(20);
-    //    fn()(30);
-    //    f(30);
+    var i = 10;
+    function fn() {
+        return function (n) {
+            console.log(n + (++i));
+        }
+    }
+    var f = fn();
+    f(20);
+    fn()(20);
+    fn()(30);
+    f(30);
 </script>
 </body>
 </html>
