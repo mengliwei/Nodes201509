@@ -5,13 +5,48 @@
     <title></title>
 </head>
 <body>
-严格 模式“use strict”
-1、区别我们发现严格下的this相对于非严格模式下的this主要区别在于：对于JS代码中没有
-入门->熟练
-call方法执行，他的作用是改变this关键字的
-1）第一个参数值是用来改变this指向的，第二个及以后的参数，是一个个的传递进来，相当于
-apply
-和call的唯一区别在于函数传递参数值的时候，call是一个个的传递参数值得，而apply的语法
+<input type="button" value="按钮1"/><input type="button" value="按钮2"/><input type="button" value="按钮3"/><input
+        type="button" value="按钮4"/><input type="button" value="按钮5"/>
+<script type="text/javascript">
+    //    var ary = [12, 23, 34, 14, 35, 16];
+    //    var da=xiao=ary[0];
+    //    for (var i=1;i<ar)
+    //    //    var max = min = ary[0];
+    //    //    for (var i = 1; i < ary.length; i++) {
+    //    //        var cur = ary[i];
+    //    //        cur > max ? max = cur : null;
+    //    //        cur < min ? min = cur : null;
+    //    //    }
+    //    //    console.log(max, min);
+    //    //1、JS中当前的代码报错，下面的代码都不在执行，而
+    //    //try{}catch(e){}  try{}catch(e){}
+    //    throw new Error("");
+    //    try{}catch(e){}
+    //    listToArray:function (likeAry) {
+    //        var ary = [];
+    //        try {
+    //            ary = Array.prototype.slice.call(likeAry, 0);
+    //        } catch (e) {
+    //            for (var i = 0; i < likeAry.length; i++) {
+    //                ary[ary.length] = likeAry[i];
+    //            }
+    //        }
+    //        return ary;
+    //    }
+    //    //localeCompare   localeCompare  localeCompare
+    //    var oLi=document.getElementsByTagName("li");
+    var a=9;
+    function fn(){
+        a=0;
+        return function(b){ return b+a++; }
+    }
+    var f=fn();
 
+    var m=f(5);alert(m);
+    var n=fn()(5);alert(n);
+    console.log(a);
+    var x=f(5);alert(x);
+    alert(a);
+</script>
 </body>
 </html>
