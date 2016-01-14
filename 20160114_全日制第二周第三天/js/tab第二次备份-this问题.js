@@ -1,17 +1,24 @@
+//1、获取当前操作所需要的元素
 var oTab = document.getElementById("tab");
 var tHead = oTab.tHead;
 var tBody = oTab.tBodies[0];
 var oThs = tHead.rows[0].cells;
 var oTrs = tBody.rows;
 
+//2、实现数据绑定
 function bindData() {
     var frg = document.createDocumentFragment();
     for (var i = 0; i < jsonAry.length; i++) {
+
+        //事先进行数据的初始化处理
         var cur = jsonAry[i];
         cur.sex = cur.sex === 0 ? "男" : "女";
 
+        //每一次循环都创建一个新的tr(创建一行)
         var oTr = document.createElement("tr");
+        //oTr.className = "bg" + (i % 2);
 
+        //每一行中还需要创建4个td
         for (var key in cur) {
             var oTd = document.createElement("td");
             oTd.innerHTML = cur[key];
@@ -25,6 +32,7 @@ function bindData() {
 }
 bindData();
 
+//3、实现隔行变色
 function changeBg() {
     for (var i = 0; i < oTrs.length; i++) {
         oTrs[i].className = "bg" + (i % 2);
@@ -32,30 +40,25 @@ function changeBg() {
 }
 changeBg();
 
-function sortList(n) {
+//4、实现表格排序
+function sortList() {
     var _this = this;
     _this.flag *= -1;
 
-    //让除了当前列的其他列的flag标识回归初始值-1
-    for (var k = 0; k < oThs.length; k++) {
-        if (k !== n) {//n是当前列的索引,如果索引不是当前列的索引,证明它是其它列,而其它的列我们都让它的flag初始化为-1,这样每一次乱序后在点击都是按照升序先排序
-            oThs[k].flag = -1;
-        }
-    }
-
+    //1)将所有行的类数组转换为数组
     var ary = utils.listToArray(oTrs);
 
+    //2)实现排序->根据每一行的第三列中的内容(分数)进行排序
     ary.sort(function (a, b) {
-        var curIn = a.cells[n].innerHTML;
-        var nexIn = b.cells[n].innerHTML;
+        //给sort传递进来的匿名函数中的this->window
+        var curIn = a.cells[2].innerHTML;
+        var nexIn = b.cells[2].innerHTML;
         var curInNum = parseFloat(curIn);
         var nexInNum = parseFloat(nexIn);
-        if (isNaN(curInNum) || isNaN(nexInNum)) {
-            return (curIn.localeCompare(nexIn)) * _this.flag;
-        }
         return (curInNum - nexInNum) * _this.flag;
     });
 
+    //3)从新按照ary中的最新的顺序把我们的每一行重新的添加到页面中
     var frg = document.createDocumentFragment();
     for (var i = 0; i < ary.length; i++) {
         frg.appendChild(ary[i]);
@@ -63,16 +66,14 @@ function sortList(n) {
     tBody.appendChild(frg);
     frg = null;
 
+    //4)排完序后的奇数偶数行和之前的不一样了,需要重新的计算隔行变色
     changeBg();
 }
 
-for (var i = 0; i < oThs.length; i++) {
-    var curTh = oThs[i];
-    if (curTh.className === "cursor") {
-        curTh.flag = -1;
-        curTh.index = i;
-        curTh.onclick = function () {
-            sortList.call(this, this.index);
-        };
-    }
-}
+//5、当点击分数的时候实现我们的排序
+oThs[2].flag = -1;
+oThs[2].onclick = function () {
+    //点击行为对应的匿名函数中的 this->oThs[2]
+    //sortList();//sortList中的 this->window
+    sortList.call(this);//->sortList.call(oThs[2]); //sortList中的 this->oThs[2]
+};
