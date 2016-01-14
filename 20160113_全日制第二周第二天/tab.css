@@ -1,0 +1,47 @@
+@charset "utf-8";
+
+body, div, table, tbody, thead, th, tr, td {
+    margin: 0;
+    padding: 0;
+    font-family: monospace;
+    font-size: 16px;
+    -webkit-user-select: none;
+}
+.box{
+    margin: 20px auto;
+    padding: 0px;
+    width: 400px;
+    border: 1px solid red;
+    border-radius: 10px;
+    box-shadow: 3px 3px 10px 0 #999;
+
+}
+#tab{
+
+}
+#tab thead tr{
+    height: 35px;
+    line-height: 35px;
+    background:blue;
+    color: #fff;
+    }
+#tab thead tr th{
+    width: 100px;
+}
+#tab thead tr th.cursor{
+    cursor: pointer;
+}
+#tab tbody tr{
+    height: 30px;
+    line-height: 30px;
+}
+#tab tbody tr td{
+    text-align: center;
+}
+#tab tbody tr.bg0 {
+
+}
+
+#tab tbody tr.bg1 {
+    background: #ffe470;
+}
