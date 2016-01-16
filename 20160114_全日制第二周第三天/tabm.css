@@ -3,30 +3,36 @@
 body, div, table, thead, tbody, th, tr, td {
     margin: 0;
     padding: 0;
-    font-family: fantasy;
+    font-family: cursive;
     font-size: 18px;
     -webkit-user-select: none;
 }
-.box{
+
+.box {
     margin: 20px auto;
-    padding: 20px;
+    padding: 10px;
     width: 400px;
     border: 1px solid red;
     border-radius: 10px;
     box-shadow: 3px 3px 10px 0 red;
 }
-#tab{
+
+#tab {
 
 }
-#tab thead tr{
+
+#tab thead tr {
     height: 35px;
     line-height: 35px;
-    background:yellow;
-    color: black;
-
+    background: blue;
+    color: white;
 }
-#tab thead tr th{
+
+#tab thead tr th {
     width: 100px;
+}
+#tab thead tr th.por{
+    cursor: pointer;
 }
 #tab tbody tr{
     height: 30px;
@@ -35,10 +41,6 @@ body, div, table, thead, tbody, th, tr, td {
 #tab tbody tr td{
     text-align: center;
 }
-#tab thead tr th.cursor{
-    cursor: pointer;
-}
-
 #tab tbody tr.bg0 {
 
 }
