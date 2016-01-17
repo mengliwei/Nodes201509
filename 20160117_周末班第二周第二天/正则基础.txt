@@ -87,7 +87,7 @@
 6、正则实战应用之-replace
   1)获取一个字符串中出现次数最多的字符和对应的次数,例如:var str = "zhufengpeixun2015yangfanqihang";问哪几个字符出现的次数最多,一共有多少次?
 
-  2)千分符
+  2)千分符 "1234567890" -> "1 234 567 890"
 
   3)模板引擎绑定数据实现的原理
     var ary = ["葛琪", "26", "china", "javascript"];
@@ -103,8 +103,11 @@
     ->"2015年05月03日 12时09分13秒"
 
   6)queryURLParameter 获取地址栏中的参数
-    http://kbs.sports.qq.com/kbsweb/game.htm?mid=1467588&age=18
+    "http://kbs.sports.qq.com/kbsweb/game.htm?mid=1467588&age=18"
     URL问号传参 -> mid=xxxx 就是我们传递过来的内容,我们需要获取mid,并且通过mid区分展示不同的内容
     ->{mid:"1467588",age:18}
 
   7)在我们的utils.js这个DOM库中很多方法的编写中都使用了部分正则,大家自己回去看一下,尤其是getElementsByClass这个方法
+
+  正则复习的视频:
+  http://www.zhufengpeixun.com/kecheng/detail_958104 课件1和课件2
