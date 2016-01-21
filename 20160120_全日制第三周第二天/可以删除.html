@@ -40,7 +40,14 @@ img标签，浏览器首先会通过src里面存储的url地址向服务器 发�
     //混合模式继承混合继承是call继承+原型继
     scrollLeft横向滚动条卷去的宽度
     scrollTop竖向滚动条卷去的宽度*/
-//移动端 meta vp+tab键
+   //4、一道面试题:获取1-100之间所有数的和,能被3整除的不进行计算
+function sum(n){
+    if(n===1){
+        return 1;
+    }return n%3===0?sum(n-1):n+sum(n-1);
+}
+    var total=sum(100);
+    console.log(total);
 </script>
 </body>
 </html>

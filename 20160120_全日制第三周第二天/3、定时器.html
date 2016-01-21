@@ -22,53 +22,53 @@
     //    }, 1000);
     //    window.clearTimeout(timer);
 
-    //3、需求:每一个1秒钟数一次,从0数到10,数完10之后动画结束
-    //->使用setInterval
-    //    var count = 0;
-    //    var timer = window.setInterval(function () {
-    //        count++;
-    //        console.log(count);
-    //        if (count === 10) {
-    //            window.clearInterval(timer);
-    //        }
-    //    }, 1000);
+//    3、需求:每一个1秒钟数一次,从0数到10,数完10之后动画结束
+//    ->使用setInterval
+//        var count = 0;
+//        var timer = window.setInterval(function () {
+//            count++;
+//            console.log(count);
+//            if (count === 10) {
+//                window.clearInterval(timer);
+//            }
+//        },1000);
 
     //->使用setTimeout实现类似于setInterval这样的无限次运动的动画,需要使用"递归的思想":在当前函数执行的时候,自己在重
     // 新的调用自己执行
-    //    var count = 0;
-    //    var timer = null;
-    //    function move() {
+        var count = 0;
+        var timer = null;
+        function move() {
     //        //->因为每一次执行move,都会新创建一个定时器,虽然执行一次后不再执行了,但是并没有销毁,我们进来的第一件事
     // 情就是把之前没用的定时器清掉
-    //        window.clearTimeout(timer);
-    //
-    //        count++;
-    //        console.log(count);
-    //
-    //        if (count === 10) {
-    //            return;
-    //        }
+            window.clearTimeout(timer);
+
+            count++;
+            console.log(count);
+
+            if (count === 10) {
+                return;
+            }
     //
     //        //->每一次执行move方法,都重新的设置一个新的定时器,让其过1000ms后在重新的调用自己(move)执行
-    //        timer = window.setTimeout(move, 1000);
-    //    }
-    //    move();
+            timer = window.setTimeout(move, 1000);
+        }
+        move();
 
-    //    var count = 0;
-    //    var timer = null;
-    //    function move() {
-    //        window.clearTimeout(timer);
-    //        count++;
-    //        console.log(count);
-    //        if (count === 5) {
-    //            return;
-    //        }
-    // ->arguments.callee代表当前函数本身,等价于move,但是推荐大家使用move,因为在严格模式下是不支持arguments.callee使用的
-    // ->Uncaught TypeError: 'caller', 'callee', and 'arguments' properties may not be accessed on strict mode functions
-    // or the arguments objects for calls to them
-    //        timer = window.setTimeout(move, 1000);
-    //    }
-    //    move();
+//        var count = 0;
+//        var timer = null;
+//        function move() {
+//            window.clearTimeout(timer);
+//            count++;
+//            console.log(count);
+//            if (count === 5) {
+//                return;
+//            }
+//    // ->arguments.callee代表当前函数本身,等价于move,但是推荐大家使用move,因为在严格模式下是不支持arguments.callee使用的
+//    // ->Uncaught TypeError: 'caller', 'callee', and 'arguments' properties may not be accessed on strict mode functions
+//    // or the arguments objects for calls to them
+//    //        timer = window.setTimeout(move, 1000);
+//    //    }
+//        move();
 
 
     //4、一道面试题:获取1-100之间所有数的和,能被3整除的不进行计算
@@ -92,12 +92,13 @@
     //第四次sum(2)  5+4+3+2+sum(1)
     //第五次sum(1)  5+4+3+2+1
 
-    function sum(n) {
-        if (n === 1) return 1;
-        return n % 3 === 0 ? sum(n - 1) : n + sum(n - 1);
-    }
-    var total = sum(100);
-    console.log(total);//->3367
+//    function sum(n) {
+//        if (n === 1) return 1;
+//        return n % 3 === 0 ? sum(n - 1) : n + sum(n - 1);
+//    }
+//    var total = sum(100);
+//    console.log(total);
+//    //->3367
 </script>
 </body>
 </html>

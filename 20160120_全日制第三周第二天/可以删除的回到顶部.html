@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        body, div {
+            margin: 0;
+            padding: 0;
+            font-size: 50px;
+            -webkit-user-select: none;
+        }
+
+        html, body {
+            width: 100%;
+            height: 1000%;
+            background: #ffe470;
+            background: -webkit-linear-gradient(top left, #008000, #08BECE, #990099, #ff3333, #ffe470);
+        }
+
+        #goTo {
+            display: none;
+            position: fixed;
+            right: 50px;
+            bottom: 50px;
+            height: 100px;
+            width: 100px;
+            line-height: 100px;
+            text-align: center;
+            border: 1px solid red;
+            background: white;
+            cursor: pointer;
+            border-radius: 50%;
+            -webkit-transform: rotate(-90deg);
+        }
+    </style>
+</head>
+<body>
+<div id="goTo">&gt;</div>
+
+<script type="text/javascript">
+    var goTo = document.getElementById("goTo");
+    goTo.onclick = function () {
+        this.style.display = "none";
+        window.onscroll = null;
+        var target = document.documentElement.scrollTop || document.body.scrollTop;
+        var duration = 1000, interval = 10, step = (target / duration) * interval;
+        var timer = window.setInterval(function () {
+            if (target <= 0) {
+                window.clearInterval(timer);
+                window.onscroll = scrollMove;
+                return;
+            }
+            target -= step;
+            document.documentElement.scrollTop = target;
+            document.body.scrollTop = target;
+        }, interval);
+    };
+    function scrollMove() {
+        var curT = document.documentElement.scrollTop || document.body.scrollTop;
+        var winH = document.documentElement.clientHeight || document.body.clientHeight;
+        if (curT >= (winH / 2)) {
+            goTo.style.display = "block";
+        } else {
+            goTo.style.display = "none";
+        }
+    }
+    window.onscroll = scrollMove;
+</script>
+</body>
+</html>

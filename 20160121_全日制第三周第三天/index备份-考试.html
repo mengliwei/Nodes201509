@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+             content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
     <title>移动端webApp新闻列表</title>
     <style type="text/css">
         body, div, ul, li, img, h2, p {
@@ -90,7 +90,8 @@
 <script charset="utf-8" type="text/javascript" src="js/utils.js"></script>
 <script type="text/javascript">
     //->思路
-    //开始的时候,让img的src为默认图片,在给其设置一个自定义属性trueImg存放的是真实图片的地址,当符合我们条件的时候,开始加载真实的图片,然后在赋值给img的src属性
+    //开始的时候,让img的src为默认图片,在给其设置一个自定义属性trueImg存放的是真实图片的地址,当符合我们条件的时候,开始加载真实
+    // 的图片,然后在赋值给img的src属性
     var oUl = document.getElementById("ul1"), imgList = oUl.getElementsByTagName("img"), oLis = oUl.getElementsByTagName("li");
 
     //1、实现数据绑定
@@ -111,46 +112,46 @@
     bindData();
 
     //2、实现鼠标滑过每一个li有一个背景颜色
-    function changeBg() {
-        for (var i = 0; i < oLis.length; i++) {
-            oLis[i].onmouseover = function () {
-                this.className = "bg";
-            };
-            oLis[i].onmouseout = function () {
-                this.className = "";
-            };
-        }
-    }
-    changeBg();
+//    function changeBg() {
+//        for (var i = 0; i < oLis.length; i++) {
+//            oLis[i].onmouseover = function () {
+//                this.className = "bg";
+//            };
+//            oLis[i].onmouseout = function () {
+//                this.className = "";
+//            };
+//        }
+//    }
+//    changeBg();
 
     //3、实现图片延迟加载->条件:当前图片底边框距离body的偏移<浏览器底边框距离body的偏移,这样的条件下我们把当前的真实图片加载出来
-    function init() {
-        for (var i = 0; i < imgList.length; i++) {
+//    function init() {
+//        for (var i = 0; i < imgList.length; i++) {
             //->闭包的作用,防止异步编程导致只加载的是最后一张的图片,我们形成一个私有的作用域把用到的每一个索引都保护起来
-            ~function (i) {
-                var curImg = imgList[i];
-                //->如果当前图片已经加载过了就不在重复加载了
-                if (curImg.isLoad) return;
-                //->当前图片底边框距离body的上偏移
-                var curImgT = utils.offset(curImg).top + curImg.offsetHeight;
-                //->当前浏览器底边框距离body的上偏移
-                var winT = (document.documentElement.clientHeight || document.body.clientHeight) + (document.documentElement.scrollTop || document.body.scrollTop);
-                //->符合条件开始加载真实的图片
-                if (curImgT < winT) {
-                    var oImg = new Image;
-                    oImg.src = curImg.getAttribute("trueImg");
-                    oImg.onload = function () {
-                        //this->oImg
-                        curImg.src = this.src;
-                        curImg.isLoad = true;
-                    }
-                }
-            }(i);
-        }
-    }
-
-    window.setTimeout(init, 500);
-    window.onscroll = init;
+//            ~function (i) {
+//                var curImg = imgList[i];
+//                //->如果当前图片已经加载过了就不在重复加载了
+//                if (curImg.isLoad) return;
+//                //->当前图片底边框距离body的上偏移
+//                var curImgT = utils.offset(curImg).top + curImg.offsetHeight;
+//                //->当前浏览器底边框距离body的上偏移
+//                var winT = (document.documentElement.clientHeight || document.body.clientHeight) + (document.documentElement.scrollTop || document.body.scrollTop);
+//                //->符合条件开始加载真实的图片
+//                if (curImgT < winT) {
+//                    var oImg = new Image;
+//                    oImg.src = curImg.getAttribute("trueImg");
+//                    oImg.onload = function () {
+//                        //this->oImg
+//                        curImg.src = this.src;
+//                        curImg.isLoad = true;
+//                    }
+//                }
+//            }(i);
+//        }
+//    }
+//
+//    window.setTimeout(init, 500);
+//    window.onscroll = init;
 </script>
 <!--
 考试：
