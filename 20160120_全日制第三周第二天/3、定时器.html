@@ -11,7 +11,8 @@
     //->只能执行一次:当到达设定时间interval的时候执行function,执行完成后定时器停止运行
 
     //window.setInterval([function],[interval])
-    //->可以执行多次:当到达设定时间interval的时候执行function,执行完成后,以后每隔这么长的时间都会从新执行function...只有手动清除定时器才会结束
+    //->可以执行多次:当到达设定时间interval的时候执行function,执行完成后,以后每隔这么长的时间都会从新执行function...
+    // 只有手动清除定时器才会结束
 
     //清除定时器:window.clearInterval/window.clearTimeout
 
@@ -32,11 +33,13 @@
     //        }
     //    }, 1000);
 
-    //->使用setTimeout实现类似于setInterval这样的无限次运动的动画,需要使用"递归的思想":在当前函数执行的时候,自己在重新的调用自己执行
+    //->使用setTimeout实现类似于setInterval这样的无限次运动的动画,需要使用"递归的思想":在当前函数执行的时候,自己在重
+    // 新的调用自己执行
     //    var count = 0;
     //    var timer = null;
     //    function move() {
-    //        //->因为每一次执行move,都会新创建一个定时器,虽然执行一次后不再执行了,但是并没有销毁,我们进来的第一件事情就是把之前没用的定时器清掉
+    //        //->因为每一次执行move,都会新创建一个定时器,虽然执行一次后不再执行了,但是并没有销毁,我们进来的第一件事
+    // 情就是把之前没用的定时器清掉
     //        window.clearTimeout(timer);
     //
     //        count++;
@@ -60,8 +63,9 @@
     //        if (count === 5) {
     //            return;
     //        }
-    //        //->arguments.callee代表当前函数本身,等价于move,但是推荐大家使用move,因为在严格模式下是不支持arguments.callee使用的
-    //        //->Uncaught TypeError: 'caller', 'callee', and 'arguments' properties may not be accessed on strict mode functions or the arguments objects for calls to them
+    // ->arguments.callee代表当前函数本身,等价于move,但是推荐大家使用move,因为在严格模式下是不支持arguments.callee使用的
+    // ->Uncaught TypeError: 'caller', 'callee', and 'arguments' properties may not be accessed on strict mode functions
+    // or the arguments objects for calls to them
     //        timer = window.setTimeout(move, 1000);
     //    }
     //    move();

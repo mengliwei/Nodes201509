@@ -71,7 +71,8 @@
 
     var goTo = document.getElementById("goTo");
     goTo.onclick = function () {
-        //4)当点击的时候,让回到顶部的按钮消失,但是只这样处理不够,因为让其消失后,我们的页面开始滚动,又触发了我们的滚动条滚动事件,在那个事件中重新让它又显示了->点击的时候先把我们的onscroll事件禁止,当回到顶部后在打开
+        //4)当点击的时候,让回到顶部的按钮消失,但是只这样处理不够,因为让其消失后,我们的页面开始滚动,又触发了我们的
+        // 滚动条滚动事件,在那个事件中重新让它又显示了->点击的时候先把我们的onscroll事件禁止,当回到顶部后在打开
         this.style.display = "none";
         window.onscroll = null;
 
@@ -97,7 +98,8 @@
     };
 
     //默认进入页面,回到顶部的按钮是没有的,只有当scrollTop的值大于半屏幕的高度,才让其显示
-    //window.onscroll:当前浏览器滚动条滚动事件(鼠标滚轮触发、手动拖动滚动条触发、按上下键触发...),只要滚动条滚动了,都会触发我们的window.onscroll事件
+    //window.onscroll:当前浏览器滚动条滚动事件(鼠标滚轮触发、手动拖动滚动条触发、按上下键触发...),只要滚动条滚动了,
+    // 都会触发我们的window.onscroll事件
     function scrollMove() {
         var curT = document.documentElement.scrollTop || document.body.scrollTop;
         var winH = document.documentElement.clientHeight || document.body.clientHeight;
