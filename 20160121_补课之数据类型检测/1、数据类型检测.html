@@ -48,19 +48,21 @@
     //    console.log(typeof num1,typeof num2);//->"number" "object"
 
     //3)在类的原型继承中,instanceof检测出来的结果其实是不准确的
-    //    function Fn() {}
-    //    var f = new Fn;
-    //    console.log(f instanceof Array);//->false f不是一个数组,它就是一个普通的实例(普通的对象)
+        function Fn() {}
+        var f = new Fn;
+        console.log(f instanceof Array);//->false f不是一个数组,它就是一个普通的实例(普通的对象)
 
 
-    //->虽然我们的Fn继承了Array,但是f没有length和数字索引哪些东西,所以f应该不是数组才对,但是用instanceof检测的结果却是true,因为f虽然不是数组,但是在f的原型链上可以找到Array
+    //->虽然我们的Fn继承了Array,但是f没有length和数字索引哪些东西,所以f应该不是数组才对,但是用instanceof检测的结果却
+    // 是true,因为f虽然不是数组,但是在f的原型链上可以找到Array
     //    function Fn() {
     //    }
     //    Fn.prototype = new Array;//->Fn子类继承了Array这个父类中的属性和方法
     //    var f = new Fn;
     //    console.log(f instanceof Array);//->true
 
-    //3、Object.prototype.toString.call(value) ->找到Object原型上的toString方法,让方法执行,并且让方法中的this变为value(value->就是我们要检测数据类型的值)
+    //3、Object.prototype.toString.call(value) ->找到Object原型上的toString方法,让方法执行,并且让方法中的this变为
+    // value(value->就是我们要检测数据类型的值)
 
     //->toString:一个方法,转换为字符串数据类型用的方法
     //每一个数据类型所属类的原型上都有toString方法,例如:Number.prototype/String.prototype/Array.prototype/Function.prototype...

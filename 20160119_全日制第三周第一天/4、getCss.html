@@ -32,18 +32,18 @@
     var oDiv = document.getElementById("div1");
 
     //第一步优化:如果返回的结果是带着单位的,我们把单位去掉;但是需要注意,不是所有的值都要去单位,类似于"100px"我们去,但是"left"、"#fff"...就不能去
-    //    function getCss(curEle, attr) {
-    //        var val = reg = null;
-    //        if ("getComputedStyle" in window) {
-    //            val = window.getComputedStyle(curEle, null)[attr];
-    //        } else {
-    //            val = curEle.currentStyle[attr];
-    //        }
-    //        reg = /^-?\d+(\.\d+)?(px|em|rem|pt)?$/;
-    //        return reg.test(val) ? parseFloat(val) : val;
-    //    }
-    //    var res = getCss(oDiv, "borderTopWidth");
-    //    console.log(res);
+        function getCss(curEle, attr) {
+            var val = reg = null;
+            if ("getComputedStyle" in window) {
+                val = window.getComputedStyle(curEle, null)[attr];
+            } else {
+                val = curEle.currentStyle[attr];
+            }
+            reg = /^-?\d+(\.\d+)?(px|em|rem|pt)?$/;
+            return reg.test(val) ? parseFloat(val) : val;
+        }
+        var res = getCss(oDiv, "borderTopWidth");
+        console.log(res);
 
     //第二步:opacity是元素的透明度样式,在IE和标准浏览器中设置透明度是不一样的,那么我们在IE6~8下就不能用opacity获取透明度了
     //->opacity: 0.5; filter: alpha(opacity=50); filter是单独的处理IE6~8浏览器的透明度的,因为IE6~8不支持opacity
