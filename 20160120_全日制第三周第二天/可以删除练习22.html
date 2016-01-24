@@ -10,46 +10,54 @@
             font-family: cursive;
             font-size: 14px;
         }
-        ul,li{
+
+        ul, li {
             list-style: none;
         }
-        #ul1{
+
+        #ul1 {
             padding: 10px;
         }
-        #ul1 li{
+
+        #ul1 li {
             position: relative;
             padding: 10px 0;
             height: 60px;
 
             border-bottom: 1px dashed green;
         }
-        #ul1 li.bg{
+
+        #ul1 li.bg {
             background: #ccc;
         }
-        #ul1 li .left{
+
+        #ul1 li .left {
             position: absolute;
             top: 10px;
             left: 0;
             width: 70px;
             height: 60px;
         }
-        #ul1 li .left img{
+
+        #ul1 li .left img {
             width: 100%;
             height: 100%;
         }
-        #ul1 li .right{
+
+        #ul1 li .right {
             margin-left: 75px;
         }
-        #ul1 li .right h2{
+
+        #ul1 li .right h2 {
             line-height: 20px;
             text-overflow: ellipsis;
             white-space: nowrap;
             overflow: hidden;
         }
-        #ul1 li .right p{
+
+        #ul1 li .right p {
             line-height: 20px;
             font-size: 12px;
-            
         }
     </style>
 </head>
@@ -64,5 +72,57 @@
         </div>
     </li>
 </ul>
+<script charset="utf-8" type="text/javascript" src="js/utils.js"></script>
+<script charset="utf-8" type="text/javascript" src="js/json.js"></script>
+<script type="text/javascript">
+    var oUl = document.getElementById("ul1"), imgList = oUl.getElementsByTagName("img"), oLis = oUl.getElementsByTagName("li");
+    function bindData() {
+        var str = "";
+        for (var i = 0; i < dataAry.length; i++) {
+            var cur = dataAry[i];
+            str += "<li>";
+            str += "<div class='left'><img src='' trueImg='" + cur["logo"] + "'/></div>";
+            str += "<div class='right'>";
+            str += "<h2>" + cur["title"] + "</h2>";
+            str += "<p>" + cur["desc"] + "</p>";
+            str += "</div>";
+            str += "</li>";
+        }
+        oUl.innerHTML = str;
+    }
+    bindData();
+    function changBg() {
+        for (var i = 0; i < oLis.length; i++) {
+            oLis[i].onmouseover = function () {
+                this.className = "bg";
+            };
+            oLis[i].onmouseout = function () {
+                this.className = null;
+            }
+        }
+    }
+    changBg();
+    function init() {
+        for (var i = 0; i < imgList.length; i++) {
+            !function (i) {
+                var curImg = imgList[i];
+                if (curImg.isLoad) return;
+                var curImgT = utils.offset(curImg).top + curImg.offsetHeight;
+                var winT = (document.documentElement.clientHeight || document.body.clientHeight) + (document.documentElement.scrollTop || document.body.scrollTop);
+                if (curImgT < winT) {
+                    var oImg = new Image;
+                    if (curImg.isLoad) return;
+                    oImg.src = curImg.getAttribute("trueImg");
+                    oImg.onload = function () {
+                        curImg.src = this.src;
+                        curImg.isLoad = true;
+                    }
+                }
+            }(i);
+        }
+    }
+    window.setTimeout(init, 500);
+    window.onscroll = init;
+</script>
 </body>
 </html>
