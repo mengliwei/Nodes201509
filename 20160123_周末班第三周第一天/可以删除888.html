@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    //    var winH = (document.documentElement.clientHeight || document.body.clientHeight)
+    //            + (document.documentElement.scrollTop || document.body.scrollTop);
+    //    var winW = (document.documentElement.clientWidth || document.body.clientWidth)
+    //            + (document.documentElement.scrollWidth || document.body.scrollWidth);
+//
+//    function offset(curEle) {
+//        var t = curEle.offsetTop, l = curEle.offsetLeft, p = curEle.offsetParent;
+//        while (p) {
+//            if (navigator.userAgent.indexOf("MSIE 8.0") === -1) {
+//                t += p.clientTop;
+//                l += p.clientLeft;
+//            }
+//            t += p.offsetTop;
+//            l += p.offsetLeft;
+//            p = p.offsetParent;
+//        }
+//        return {top: t, left: l};
+//    }
+    var inner=document.getElementById("inner");
+    var innerVal=inner.innerHTML;
+    var timer=null;
+    function init(){
+        timer=window.setInterval(function(){
+            var curl=inner.scrollLeft;
+            inner.scrollLeft=curl+1;
+            var nowL=inner.scrollLeft;
+            if(curl=nowL){
+                inner.innerHTML="&nbsp;&nbsp;&nbsp;&nbsp;"+innerVal;
+            }
+        },10);
+    }
+    init();
+
+</script>
+</body>
+</html>

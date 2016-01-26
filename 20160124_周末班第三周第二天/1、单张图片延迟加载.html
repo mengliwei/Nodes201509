@@ -44,14 +44,16 @@
     function imgLoadFir() {
         var imgFir = document.getElementById("img1");
         var trueImg = imgFir.getAttribute("trueImg");
-        //imgFir.src = trueImg; ->直接这样写不好,如果真实图片的地址不存在的话,当我们设置src后,页面中显示的是一张碎图,这样的话还不如显示默认图呢
+        //imgFir.src = trueImg; ->直接这样写不好,如果真实图片的地址不存在的话,当我们设置src后,页面中显示的是一张碎图,这样的话还不
+        // 如显示默认图呢
         var oImg = new Image;//->createElement("img")创建一个新的img标签
         oImg.src = trueImg;
         oImg.onload = function () {//->当前的真实图片可以加载成功
             imgFir.src = this.src;
             //console.log("ok");//->2
         };
-        //console.log("loading...");//->1 这个事件也是异步编程:当真实的图片加载的时候,需要一段时间才能加载完成,在这个阶段内,我们不等,继续执行下面的代码...
+        //console.log("loading...");//->1 这个事件也是异步编程:当真实的图片加载的时候,需要一段时间才能加载完成,在这个阶段内,我们
+        // 不等,继续执行下面的代码...
     }
     window.setTimeout(imgLoadFir, 1000);
 

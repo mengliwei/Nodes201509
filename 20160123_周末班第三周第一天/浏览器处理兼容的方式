@@ -24,7 +24,8 @@ JS中处理兼容的方式总结:
   //curEle->当前要操作的元素  attr->要获取的样式属性名
   function getCss(curEle,attr){
      var val=null;
-     if(window.getComputedStyle){//->获取window下getComputedStyle的属性值,如果当前浏览器兼容返回的是一个函数,不兼容返回的是undefined;然后把获取的值转换为布尔类型看真假,如果是真说明兼容,为假说明不兼容
+     if(window.getComputedStyle){//->获取window下getComputedStyle的属性值,如果当前浏览器兼容返回的是一个函数,不兼容返回的
+     是undefined;然后把获取的值转换为布尔类型看真假,如果是真说明兼容,为假说明不兼容
         val=window.getComputedStyle(curEle,null)[attr];
      }else{
         val=curEle.currentStyle[attr];
@@ -35,7 +36,8 @@ JS中处理兼容的方式总结:
   [第二种写法]
   function getCss(curEle,attr){
      var val=null;
-     if(typeof window.getComputedStyle==="function"){//->获取window下getComputedStyle的属性值,如果当前浏览器兼容返回的是一个函数,不兼容返回的是undefined;然后把返回的值用typeof检测,判断是否等于"function",等于的话兼容,反之不兼容
+     if(typeof window.getComputedStyle==="function"){//->获取window下getComputedStyle的属性值,如果当前浏览器兼容返回的是一个函数,
+     不兼容返回的是undefined;然后把返回的值用typeof检测,判断是否等于"function",等于的话兼容,反之不兼容
         val=window.getComputedStyle(curEle,null)[attr];
      }else{
         val=curEle.currentStyle[attr];
