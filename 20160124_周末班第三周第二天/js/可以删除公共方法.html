@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    toJSON:function toJSON(str){
+        return "JSON"in window?JSON.parse(str):eval("("+str+")");
+    }
+</script>
+</body>
+</html>
