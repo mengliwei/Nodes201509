@@ -6,7 +6,7 @@
             val = window.getComputedStyle(curEle, null)[attr];
         } else {
             if (attr === "opacity") {
-                val = curEle.currentStyle["filter"]
+                val = curEle.currentStyle["filter"];
                 reg = /^alpha\(opacity=(\d+(?:\.\d+)?)\)$/;
                 val = reg.test(val) ? reg.exec(val)[1] / 100 : 1;
             } else {

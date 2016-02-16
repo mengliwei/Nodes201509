@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+#div1{ width:100px; height:100px; position:absolute; top:0; left:150px; background:red;}
+</style>
+</head>
+<body>
+<div id="div1"></div>
+</body>
+</html>
+<script>
+function getCss(ele,attr){
+	//if("getComputedStyle" in window)
+	if(window.getComputedStyle){
+		return parseFloat(getComputedStyle(ele,null)[attr])
+	}else{
+		return parseFloat(ele.currentStyle[attr]);
+	}
+}
+//写一个稍有通用性的一个动画方法
+function animate(ele,attr,target,duration){
+	var begin=getCss(ele,attr);
+	var change=target-begin;
+	
+	var times=0;
+	var interval=15;
+	
+	function step(){
+		times+=interval;
+		if(times<duration){
+			ele.style[attr]=times/duration*change+begin+"px";	
+		}else{
+			ele.style[attr]=target+"px";
+			clearInterval(timer);
+		}
+	}
+	var timer=window.setInterval(step,interval);
+}
+
+div1.onclick=function(){
+	animate(this,"height",800,1000);	
+}
+</script>

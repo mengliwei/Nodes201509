@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+</body>
+</html>
+
+<script>
+var str="&^333%abc123xyz*$345@!";
+//要求：把字母中的数字提出来
+var reg=/[a-z](\d+)[a-z]/i;
+
+reg.test(str);
+RegExp.$1//把第一个分组捕获到的内容赋给这个$1
+
+
+var str="&^333%abc123xyz*$345@!";
+//要求：把字母中的数字提出来
+var reg=/[a-z]((\d)(\d)(\d))[a-z]/i;
+
+reg.test(str);
+RegExp.$1;
+RegExp.$2;
+RegExp.$3;
+RegExp.$4;
+
+//要对称数：131,969
+reg=/(\d)\d\1/
+
+
+</script>

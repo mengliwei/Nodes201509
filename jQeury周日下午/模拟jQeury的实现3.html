@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+<div>DIV</div><div>DIV</div><div>DIV</div><div>DIV</div><div>DIV</div><div>DIV</div>
+</body>
+</html>
+<script>
+function Query(selector){
+	//"标签名","#id",".class"
+	var regId=/^#([a-z]\w*)$/i;
+	var regClass=/^\.([a-z]\w*)$/i
+	var regTagName=/^[a-z]\w*$/i;
+	if(regId.test(selector)){
+		var ele=document.getElementById(RegExp.$1);
+		this[0]=ele;
+		this.length=1;
+		//this//就是保存数据的容器，	
+	}else if(regClass.test(selector)){
+		var eles=document.getElementsByClassName(RegExp.$1);
+		for(var i=0;i<eles.length;i++){
+			this[i]=eles[i];	
+		}
+		this.length=eles.length;
+	}else if(regTagName.test(selector)){
+		var eles=document.getElementsByTagName(selector);
+		for(var i=0;i<eles.length;i++){
+			this[i]=eles[i]	
+		}
+		this.length=eles.length;
+	}
+	
+}
+
+Query.prototype.width=function(val){
+	for(var i=0;i<this.length;i++){
+		this[i].style.width=val+"px";	
+	}
+	return this;
+}
+Query.prototype.height=function(val){
+	for(var i=0;i<this.length;i++){
+		this[i].style.height=val+"px";	
+	}
+	return this;
+}
+Query.prototype.bgColor=function(val){
+	for(var i=0;i<this.length;i++){
+		this[i].style.backgroundColor=val;	
+	}
+	return this;
+}
+Query.prototype.eq=function(n){//返回Query类的对象，取得n指定的那个元素
+	var obj=new Query;//事先准备好一个Query类的对象，用来保存取到的指定元素
+	if(this[n]){obj[0]=this[n];obj.length=1}else{obj.length=0}
+	//obj[0]=this[n];
+	//obj.length=1;
+	return obj;
+	
+}
+Query.prototype.get=function(n){//返回的是DOM原生对象
+	if(this[n]===undefined){
+		return null;
+	}else{
+		return this[n];	
+	}
+	//return this[n];
+}
+function $(selector){
+	return new Query(selector)	
+}
+//var obj=new Query("div");
+$("div").bgColor("yellow").height(100).width(100).eq(3).height(200).width(200).get(0).style.backgroundColor="blue";
+//(2).plus(6).reduce(3) //最终输出5
+
+//对象---面向对象
+///对象是复合数据载体，
+//面向对象 object oriented programing 以对象这样的数据为导向的编程方式 ，它是解决“生产对象”的，解决生产的问题
+//工厂模式--不能解决实例识别的问题--->构造函数模式--不能共享的问题--原型模式
+
+//当你new 一个类的时候，浏览器会执行那些操作
+//1、以这个构造函数为类，创建这个类实例（创建了一个对象）
+//2、把这个实例返回
+//3、以这个实例为上下文（context）运行构造函数
+//4、所有的实例都会共享使构造函数原型上定义的那些方法
+
+//$(".class1").width(100).height(100).bgColor("green").eq(3).width(200).height(200).get(0).style.backgroundColor="blue";
+//$("div").height(100).get(8)//
+//eq返回的是jQuery对象，get返回DOM原生对象
+
+//实现以CSS选择器的方式查找，保存，链式写法，隐式遍历,还要实现eq方法可以获得指定的DOM元素（返回是当前类的实例），还要实现get方法，用来把保存在Query类的实例中指定DOM原生对象分离出来
+
+</script>

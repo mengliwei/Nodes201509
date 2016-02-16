@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+#li5~li{ background:blue;}
+</style>
+</head>
+
+<body>
+<div >
+<ul class="tabGroup">
+    	<li class="tab selectedTab">选项一 </li>
+        <li class="tab">选项二</li>
+        <li class="tab">选项三 </li>
+        <li class="tab">选项四</li>
+        <li class="tab">选项五 </li>
+        <li class="tab selectedTab">选项一 </li>
+        <li class="tab">选项二</li>
+        <li class="tab">选项三 </li>
+        <li class="tab">选项四</li>
+        <li class="tab">选项五 </li>
+    </ul>
+    
+    <ul class="tabGroup">
+    	<li class="tab selectedTab">选项一 </li>
+        <li class="tab">选项二</li>
+        <li class="tab">选项三 </li>
+        <li class="tab">选项四</li>
+        <li class="tab">选项五 </li>
+        <li class="tab selectedTab">选项一 </li>
+        <li class="tab">选项二</li>
+        <li class="tab">选项三 </li>
+        <li class="tab">选项四</li>
+        <li class="tab">选项五 </li>
+    </ul>
+    <ul class="tabGroup">
+    	<li class="tab selectedTab">选项一 </li>
+        <li class="tab">选项二</li>
+        <li class="tab">选项三 </li>
+        <li class="tab">选项四</li>
+        <li class="tab" id="li5">选项五 </li>
+        <li class="tab selectedTab" id="li6">选项一 </li>
+        <li class="tab" id="li7">选项二</li>
+        <li class="tab" id="li8">选项三 </li>
+        <li class="tab" id="abc">选项四</li>
+        <li class="tab" id="bbc">选项五 </li>
+    </ul>
+
+</div>
+<div></div>
+</body>
+</html>
+<script src="jquery-1.9.1.js"></script>
+<script>
+/*//alert($("div *").length);
+$("div").find("li");//表示找查所有的后代元素li，和$("div li")一样
+//alert($("div>*").length);
+$("div").children("#li5")
+//$("#li5+li").css("background","red");
+//jQuery的选项器都会对应一个方法
+$("#li5").next()//相当于+
+$("#li5").nextAll();
+//没有获得哥哥节点和哥哥们的选择器，
+$("#li5").prevAll().css({backgroundColor:"red",color:"green",fontSize:36});
+$("li:odd").css({"color":"purple","background"
+:"black"});
+$("li:first-child").css("font-size","36px");*/
+
+/*$("li:not(#li5,:eq(3))").css({"color":"purple","background"
+:"black"});
+
+$("li:gt(10)").css({color:"blue",fontSize:48});
+*/
+
+//通过文字内容找查元素
+
+//$("li:contains(一)").css({color:"blue",fontSize:48});
+$("li[id$=bc]").css({"background":"black"})
+</script>

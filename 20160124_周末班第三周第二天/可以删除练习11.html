@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    function getElementsByClassName(strClass, context) {
+        context = context || document;
+        if ("getElementsByClassName"in window) {
+            return utils.listToArray(context.getElementsByClassName(strClass));
+        }
+        strClass = strClass.replace(/(^ +| +$)/g, "").split(/ +/);
+        var tagList = context.getElementsByTagName("*"), ary = [];
+        for (var i = 0; i < tagList.length; i++) {
+            var curTag = tagList[i], curTagClass = curTag.className;
+            flag = true;
+            for (var j = 0; j < strClass.length; j++) {
+                var reg = new RegExp("(?:^| +)" + strClass[j] + "(?: +|$)");
+                if (!reg.test(curTagClass)) {
+                    flag = false;
+                    break;
+                }
+            }
+            flag ? ary[ary.length] = curTag : null;
+        }
+        return ary;
+    }
+
+</script>
+</body>
+</html>

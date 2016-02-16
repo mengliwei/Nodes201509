@@ -89,7 +89,7 @@
         selectTip();
         autoTimer = window.setInterval(autoMove, 2000);
     };
-    
+
     //->实现自动轮播
     function autoMove() {
         step++;

@@ -142,7 +142,7 @@ utils.getCss = function getCss(curEle, attr) {
         val = window.getComputedStyle(curEle, null)[attr];
     } else {
         if (attr === "opacity") {
-            val = curEle.currentStyle["filter"]
+            val = curEle.currentStyle["filter"];
             reg = /^alpha\(opacity=(\d+(?:\.\d+)?)\)$/;
             val = reg.test(val) ? reg.exec(val)[1] / 100 : 1;
         } else {
@@ -172,7 +172,7 @@ utils.setCss = function setCss(curEle, attr, value) {
     }
 
     //->传递进来的属性名符合正则,那么我们需要根据情况选择是否加单位
-    var reg = /^(width|height|(padding|margin(Top|Left|Right|Bottom))|top|left|right|bottom)$/;
+    var reg = /^(width|height|(padding|margin(Top|Left|Right|Bottom)?)|top|left|right|bottom)$/;
     if (reg.test(attr)) {
         //如果传递进来的是一个单独的数字,我们给其加单位,传递进来的不是一个数,传递的是啥,我就设置为啥
         reg = /^-?\d+(\.\d+)?$/;

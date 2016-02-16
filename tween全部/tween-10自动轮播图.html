@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+#outer{ width:500px; height:240px; margin:100px auto; position:relative; overflow:hidden; }
+#inner{ width:2500px; height:240px; position:absolute; left:0px; top:0; font-size:48px; line-height:240px; text-align:center;}
+#inner div{ float:left; width:500px; height:240px; background:green; }
+#btn{ margin:0; padding:0; list-style:none; position:absolute; bottom:30px; right:30px;  width:250px; height:35px; overflow:hidden; }
+#btn li{ float:left; width:30px; height:30px; border-radius:50%; font-size:18px; color:#fff; font-weight:bold; text-align:center; line-height:30px; margin:0 10px; cursor:pointer; background:orange; }
+</style>
+</head>
+
+<body>
+<div id="outer">
+	<div id="inner">
+    	<div>一</div>
+        <div style="background:red;">二</div>
+        <div style="background:blue;">三</div>
+        <div style="background:yellow;">四</div>
+        <div style=" background:purple">五</div>
+    
+    </div>
+    <ul id="btn"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li></ul>
+</div>
+</body>
+</html>
+<script src="tween.js"></script>
+<script>
+var oLis=document.getElementById("btn").getElementsByTagName("li");
+for(var i=0;i<oLis.length;i++){
+	;(function(i){
+		oLis.item(i).onclick=function(){
+			animate(inner,{left:i*-500},700);
+			clearInterval(autoTimer);//把已经开启的定时器清掉了
+			//autoTimer=setInterval(autoMove,3000);//又开启了一个新的定时器
+			autoTimer=setTimeout(function(){//鼠标点击后，第一次间隔三秒，以后每次间隔两秒。两个不同的定时器套在一起，实现的定时器累加效果
+				autoTimer=setInterval(autoMove,2000);
+			},1000);
+			step=i;
+		}
+	})(i);
+}
+
+/*setTimeout(function(){animate(inner,{left:1*-500},700);},2000);
+setTimeout(function(){animate(inner,{left:2*-500},700);},4000);
+setTimeout(function(){animate(inner,{left:3*-500},700);},6000);
+setTimeout(function(){animate(inner,{left:4*-500},700);},8000);
+setTimeout(function(){animate(inner,{left:0*-500},700);},10000);
+
+setTimeout(function(){animate(inner,{left:1*-500},700);},12000);
+setTimeout(function(){animate(inner,{left:2*-500},700);},14000);
+setTimeout(function(){animate(inner,{left:3*-500},700);},16000);
+setTimeout(function(){animate(inner,{left:4*-500},700);},18000);
+setTimeout(function(){animate(inner,{left:0*-500},700);},20000);
+
+setTimeout(function(){animate(inner,{left:1*-500},700);},22000);
+setTimeout(function(){animate(inner,{left:2*-500},700);},24000);
+setTimeout(function(){animate(inner,{left:3*-500},700);},26000);
+setTimeout(function(){animate(inner,{left:4*-500},700);},28000);
+setTimeout(function(){animate(inner,{left:0*-500},700);},30000);
+
+setTimeout(function(){animate(inner,{left:1*-500},700);},32000);
+setTimeout(function(){animate(inner,{left:2*-500},700);},34000);
+setTimeout(function(){animate(inner,{left:3*-500},700);},36000);
+setTimeout(function(){animate(inner,{left:4*-500},700);},38000);
+setTimeout(function(){animate(inner,{left:0*-500},700);},40000);
+ 86400/2*/
+var step=0;
+function autoMove(){
+	step++;
+	if(step==5){	step=0;	}
+	 animate(inner,{left:step*-500},700);
+}
+var autoTimer=window.setInterval(autoMove,2000);
+
+//当点击事件触发的时候，先暂停自动播放。过3秒之后，再启起自动播放。
+//是第一次间隔三秒，再往后还是每运行一次动画间隔2秒；还是每次都间隔三秒
+//这时自动播放的顺序在当前停止的图片之后
+
+
+
+
+
+
+</script>

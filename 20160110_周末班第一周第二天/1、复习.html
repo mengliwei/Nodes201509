@@ -6,9 +6,9 @@
 </head>
 <body>
 <script type="text/javascript">
-    var num = 2;
+    var num = 2;//8
     var obj = {
-        num: 4,
+        num: 4,//8
         fn: (function () {
             this.num *= 2;
             num = num * 2;
@@ -21,8 +21,8 @@
         })()
     };
     var fn = obj.fn;
-    fn();
-    obj.fn();
+    fn();//9
+    obj.fn();//27
     console.log(window.num, obj.num);
 </script>
 </body>

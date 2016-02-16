@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        #div1 {
+            position: absolute;
+            top: 20px;
+            left: 150px;
+            width: 100px;
+            height: 100px;
+            background: red;
+            filter: alpha(opacity=50);
+        }
+
+        #left {
+            height: 40px;
+            width: 100px;
+            background: red;
+        }
+
+        #right {
+            width: 100px;
+            height: 40px;
+            background: green;
+        }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+<div id="left">left</div>
+<div id="right">right</div>
+<script type="text/javascript">
+   /* var ele = document.getElementById("div1");
+    function getCss(ele, attr) {
+        if (window.getComputedStyle) {
+            return parseFloat(getComputedStyle(ele, null)[attr])
+        } else {
+            if (attr == "opacity") {
+                var str = ele.currentStyle.filter;
+                var reg = /alpha\(opacity=(\d+)\)/;
+                if (reg.test(str)) {//如果写了滤镜的不透明度样式，这样可以匹配成功
+                    var value = RegExp.$1;
+                    return value / 100;//为什么要除以100，按标准浏览器的原则
+                } else {//如果没有写滤镜样式，则不会成功，则应该把默认的样式返回
+                    return 1;
+                }
+            }
+            return parseFloat(ele.currentStyle[attr]);
+        }
+    }
+    function setCss(ele, attr, value) {
+        if (attr == "opacity") {
+            ele.style.opacity = value;
+            ele.style.filter = "alpha(opacity=" + value * 100 + ")";
+            //}else if("left"||"width"||"top"||"height"){
+
+        } else {
+            ele.style[attr] = value + "px";
+        }
+    }
+    var obj = {height: 300, width: 400, left: 600, top: 500, opacity: 0.2};
+
+    function animate(ele, obj, duration, callback) {
+        var oBegin = {};
+        var oChange = {};
+        for (var attr in obj) {
+            var begin = getCss(ele, attr);
+            var change = target - begin;
+            var target = obj[attr];
+            oBegin[attr] = begin;
+            oChange[attr] = change;
+        }
+        var times = 0;
+        var interval = 15;
+        window.clearInterval(ele.timer);
+        function step() {
+            times += interval;
+            if (times < duration) {
+                for (var attr in oChange) {
+                    var change = oChange[attr];
+                    var begin = oBegin[attr];
+                    var val = times / duration * cxhange + begin;
+                    setCss(ele, attr, val)
+                }
+
+
+            } else {
+                for (var attr in obj) {
+                    var target = obj[attr];
+                    setCss(ele, attr, target);
+                }
+                window.clearInterval(ele, timer);
+                if (typeof callback == "function") {
+                    callback.call(ele);
+                }
+            }
+        }
+
+        ele.timer = window.setInterval(step, interval);
+    }
+    div1.onclick = function () {
+        animate(this, obj, 1000)
+    }*/
+    var cur="1   2 3";
+    console.log(cur.split(" "));
+</script>
+</body>
+</html>

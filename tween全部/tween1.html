@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+#div1{ width:100px; height:100px; position:absolute; top:0; left:150px; background:red;}
+</style>
+</head>
+<body>
+<div id="div1"></div>
+</body>
+</html>
+<script>
+function getCss(ele,attr){
+	//if("getComputedStyle" in window)
+	if(window.getComputedStyle){
+		return parseFloat(getComputedStyle(ele,null)[attr])
+	}else{
+		return parseFloat(ele.currentStyle[attr]);
+	}
+}
+var ele=document.getElementById("div1");
+var begin=getCss(ele,"left");//起点
+var target=900;//终点
+var change=target-begin;//需要运动的距离
+
+var duration=1000;//规定的总时间
+var times=0;//当前消耗的时间
+var interval=15;//每走一次需要的时间
+
+function step(){
+	times+=interval
+	//当前位置=消耗的时间/规定的总时间*总距离+起始位置
+	if(times<duration){//在规定的时间内完成动画
+		ele.style.left=times/duration*change+begin+"px";
+	}else{//如果当前消耗的时间，已经到了或超过了规定的时间，则强制到达终达
+		ele.style.left=target+"px";
+		clearInterval(timer);
+	}
+}
+var timer=window.setInterval(step,interval);
+//F11逐语句，F10逐过程，F8逐断点
+</script>

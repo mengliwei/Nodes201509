@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+#div1{ width:100px; height:100px; position:absolute; top:0; left:150px; background:red; filter:alpha(opacity=50);  }
+</style>
+</head>
+<body>
+<div id="div1"></div>
+<div id="left" style="background:green">left</div>
+<div id="right" style="background:blue;">right</div>
+</body>
+</html>
+<script>
+function getCss(ele,attr){
+	//if("getComputedStyle" in window)
+	if(window.getComputedStyle){
+		return parseFloat(getComputedStyle(ele,null)[attr])
+	}else{
+		///专门处理IE6/7/8
+		if(attr=="opacity"){
+			//"alpha(opacity=50)"
+			var str=ele.currentStyle.filter;
+			var reg=/alpha\(opacity=(\d+)\)/;
+			if(reg.test(str)){//如果写了滤镜的不透明度样式，这样可以匹配成功
+				var value=RegExp.$1;
+				return value/100;//为什么要除以100，按标准浏览器的原则
+			}else{//如果没有写滤镜样式，则不会成功，则应该把默认的样式返回
+				return 1;
+			}
+		}
+		return parseFloat(ele.currentStyle[attr]);
+	}
+}
+
+function setCss(ele,attr,value){
+	if(attr=="opacity"){
+		ele.style.opacity=value;
+		ele.style.filter="alpha(opacity="+value*100+")";
+	//}else if("left"||"width"||"top"||"height"){
+		
+	}else{
+		ele.style[attr]=value+"px";
+	}
+}
+
+var obj={height:100,width:100,left:600,top:500,opacity:0.2}
+function animate(ele,/* attr,target */ obj,duration,callback){
+	var oBegin={};
+	var oChange={};
+	
+	var flag=0;//标识变量，用来标识有几个有效方向
+	for(var attr in obj){
+		var begin=getCss(ele,attr);//计算每个方向的起始值
+		var target=obj[attr];
+		var change=target-begin;//计算每个方向的运动距离
+		if(change){//只保存有效的方向（如果此方向的值无效（为0）则不保存）
+			oBegin[attr]=begin;//然后再把begin和change保存在对应的对象里
+			oChange[attr]=change;//
+			flag++;//存在有效运动的方向，则让flag累加
+		} 
+	}
+	if(flag===0)return;//如果没有有效运动的方向，则退出（以下代码统统不运行）
+		var times=0;
+		var interval=10;
+		
+		window.clearInterval(ele.timer);//防止动画积累的
+		
+		function step(){
+			times+=interval;
+			if(times<duration){
+				for(var attr in oChange){
+					//由于现在是多个方向的运动，所以step每执行一次，则需要把每个方向（attr）都计算一次。计算的时候，需要把每个方向的起始值（begin）和距离（change）都取出来进行计算
+					
+					var change=oChange[attr];//取出原来已经保存好的距离
+					var begin=oBegin[attr];//取出原来已经保存好的起始位置
+					var val=times/duration*change+begin;//计算此方向的当前位置
+					setCss(ele,attr,val);//赋值
+				}
+			}else{
+				for(var attr in oChange){//obj
+					var target=obj[attr];//让每个方向都准确的到达目的地
+					setCss(ele,attr,target);			
+				}
+				window.clearInterval(ele.timer);
+				if(typeof callback=="function"){
+					callback.call(ele);	
+				}	
+			}
+		}
+		ele.timer=window.setInterval(step,interval);	
+}
+
+div1.onclick=function(){
+	animate(this,obj,1000);	
+}
+
+</script>

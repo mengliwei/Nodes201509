@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>无标题文档</title>
+    <style type="text/css">
+        #div1 {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            top: 0;
+            left: 150px;
+            background: red;
+            filter: alpha(opacity=50);
+        }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+<div id="left" style="background:green">left</div>
+<div id="right" style="background:blue;">right</div>
+</body>
+</html>
+<script>
+    function getCss(ele, attr) {
+        //if("getComputedStyle" in window)
+        if (window.getComputedStyle) {
+            return parseFloat(getComputedStyle(ele, null)[attr])
+        } else {
+            ///专门处理IE6/7/8
+            if (attr == "opacity") {
+                //"alpha(opacity=50)"
+                var str = ele.currentStyle.filter;
+                var reg = /alpha\(opacity=(\d+)\)/;
+                if (reg.test(str)) {//如果写了滤镜的不透明度样式，这样可以匹配成功
+                    var value = RegExp.$1;
+                    return value / 100;//为什么要除以100，按标准浏览器的原则
+                } else {//如果没有写滤镜样式，则不会成功，则应该把默认的样式返回
+                    return 1;
+                }
+            }
+            return parseFloat(ele.currentStyle[attr]);
+        }
+    }
+
+    function setCss(ele, attr, value) {
+        if (attr == "opacity") {
+            ele.style.opacity = value;
+            ele.style.filter = "alpha(opacity=" + value * 100 + ")";
+            //}else if("left"||"width"||"top"||"height"){
+
+        } else {
+            ele.style[attr] = value + "px";
+        }
+    }
+
+    function animate(ele, attr, target, duration) {
+        var begin = getCss(ele, attr);
+        var change = target - begin;
+        var times = 0;
+        var interval = 15;
+
+        window.clearInterval(ele.timer);
+
+        function step() {
+            times += interval
+            if (times < duration) {
+                var val = times / duration * change + begin;
+                setCss(ele, attr, val);
+            } else {
+                setCss(ele, attr, target);
+                clearInterval(ele.timer);
+            }
+        }
+
+        window.setInterval(step, interval);
+    }
+
+    div1.onclick = function () {
+        animate(this, "opacity", 0.1, 1000);
+    }
+</script>

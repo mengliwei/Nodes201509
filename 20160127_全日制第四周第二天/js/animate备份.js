@@ -17,7 +17,7 @@
         return reg.test(val) ? parseFloat(val) : val;
     }
 
-    //->getCss:设置当前元素的某一个样式属性的值
+    //->setCss:设置当前元素的某一个样式属性的值
     function setCss(curEle, attr, value) {
         if (attr === "float") {
             curEle["style"]["cssFloat"] = value;
@@ -31,7 +31,7 @@
             curEle["style"]["filter"] = "alpha(opacity=" + value * 100 + ")";
             return;
         }
-        var reg = /^(width|height|(padding|margin(Top|Left|Right|Bottom))|top|left|right|bottom)$/;
+        var reg = /^(width|height|(padding|margin(Top|Left|Right|Bottom)？)|top|left|right|bottom)$/;
         if (reg.test(attr)) {
             reg = /^-?\d+(\.\d+)?$/;
             if (reg.test(value)) {
@@ -52,7 +52,8 @@
     };
 
     //->实现我们的运动动画
-    //curEle:当前要运动的元素 tarObj:目标位置的值,它是一个对象,存储多个方向的目标值 duration:当前运动的总时间 effect:运动的动画效果(匀速、指数衰减...) callBack:回调函数,当前动画结束后需要做的事情
+    //curEle:当前要运动的元素 tarObj:目标位置的值,它是一个对象,存储多个方向的目标值 duration:当前运动的总时间 effect:运动的动画
+    // 效果(匀速、指数衰减...) callBack:回调函数,当前动画结束后需要做的事情
     function animate(curEle, tarObj, duration, effect, callBack) {
         effect = zhufengEffect.Linear;
 

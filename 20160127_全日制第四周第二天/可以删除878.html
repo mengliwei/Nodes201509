@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        body, div, ul, li, a, img {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul, li {
+            list-style: none;
+        }
+
+        img {
+            display: block;
+            border: none;
+        }
+
+        a, a:hover {
+            text-decoration: none;
+            color: #999;
+        }
+
+        .outer {
+            position: relative;
+            margin: 0 auto;
+            width: 1000px;
+            height: 300px;
+            box-shadow: 3px 3px 10px #999;
+            overflow: hidden;
+        }
+
+        .inner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 300px;
+        }
+
+        .inner div {
+            float: left;
+            width: 1000px;
+            height: 300px;
+            background: url("img/default.gif") no-repeat center center;
+        }
+
+        .inner div img {
+            display: none;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            filter: alpha(opacity=0);
+        }
+
+        .tip {
+            position: absolute;
+            right: 20px;
+            bottom: 20px;
+            overflow: hidden;
+        }
+
+        .tip li {
+            float: left;
+            margin-left: 6px;
+            width: 18px;
+            height: 18px;
+            background: #999;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .tip li.bg {
+            background: yellow;
+        }
+
+        .outer a {
+            position: absolute;
+            top: 50%;
+            margin-top: -22.5px;
+            height: 45px;
+            width: 30px;
+            background: url("img/pre.png") no-repeat;
+            opacity: 0.3;
+            filter: alpha(opacity=30);
+        }
+
+        .outer a:hover {
+            opacity: 1;
+            filter: alpha(opacity=100);
+        }
+
+        .outer a.btnLeft {
+            left: 20px;
+        }
+
+        .outer a.btnRight {
+            right: 20px;
+            background-position: -50px 0;
+        }
+
+    </style>
+</head>
+<body>
+<div class="outer">
+    <div class="inner" id="inner"></div>
+    <ul class="tip" id="tip"></ul>
+    <a href="javascript:;" class="btnLeft" id="btnLeft"></a>
+    <a href="javascript:;" class="btnRight" id="btnRight"></a>
+</div>
+<script charset="utf-8" type="text/javascript" src="可以删除的库2.js"></script>
+<script type="text/javascript">
+    var ary = ["img/banner1.jpg", "img/banner2.jpg", "img/banner3.jpg", "img/banner4.jpg"];
+    var inner = document.getElementById("inner"), imgList = inner.getElementsByTagName("img");
+    var tip = document.getElementById("tip"), tipList = tip.getElementsByTagName("li");
+    var btnLift = document.getElementById("btnLift"), btnRight = document.getElementById("btnRight");
+    var step = 0, autoTimer = null, count = ary.length;
+    //数据绑定
+    bindData();
+    function bindData() {
+        var str = "";
+        for (var i = 0; i < ary.length; i++) {
+            str += "<div><img src=''trueImg='" + ary[i] + "'/></div> ";
+        }
+        str += "<div><img src=''trueImg='" + ary[0] + "'/></div> ";
+        inner.innerHTML = str;
+        inner.style.width = (count + 1) * 1000 + "px";
+        var str = "";
+        for (var i = 0; i < ary.length; i++) {
+            str += "<li></li>";
+        }
+        tip.innerHTML = str;
+        selectTip();
+    }
+    /*//图片延迟加载
+    lazyImg();
+    function lazyImg() {
+        for (var i = 0; i < imgList.length; i++) {
+            ~function (i) {
+                var curImg = imgList[i];
+                var oImg = new Image;
+                oImg.src = curImg.getAttribute("trueImg");
+                oImg.onload = function () {
+                    curImg.src = this.src;
+                    curImg.style.display = "block";
+                    animate(curImg, {opacity: 1}, 500);
+                }
+            }(i);
+        }
+    }
+    //焦点的选中
+    function selectTip() {
+        var tempStep = step;
+        tempStep >= tipList.length? tempStep = 0 : null;
+        for (var i = 0; i < tipList.length; i++) {
+            tipList[i].className = i === tempStep ? "bg" : null;
+        }
+    }
+    //图片自动轮播
+    autoTimer = window.setInterval(autoMove, 3000);
+    function autoMove() {
+        step++;
+        if (step > count) {
+            step = 1;
+            inner.style.left = 0;
+        }
+        animate(inner, {left: -step * 1000}, 500);
+        selectTip();
+    }
+    //实现焦点的点击
+    tipMove();
+    function tipMove(){
+        for(var i=0;i<tipList.length;i++){
+            tipList[i].index=i;
+            tipList[i].onclick=function(){
+                window.clearInterval(autoTimer);
+                step=this.index;
+                animate(inner,{left:-step*1000},500);
+                selectTip();
+                autoTimer=window.setInterval(autoMove,3000);
+            }
+        }
+    }
+    //实现左右切换
+    btnRight.onclick=function(){
+        window.clearInterval(autoTimer);
+        autoMove();
+        autoTimer=window.setInterval(autoMove,3000);
+    };
+    btnLeft.onclick=function(){
+        window.clearInterval(autoTimer);
+        step--;
+        if(step<0){
+            step=count-1;
+            inner.style.left=-count*1000+"px";
+        }
+        animate(inner,{left:-step*1000},500);
+        selectTip();
+        autoTimer=window.setInterval(autoMove,3000);
+    };*/
+
+
+
+</script>
+</body>
+</html>

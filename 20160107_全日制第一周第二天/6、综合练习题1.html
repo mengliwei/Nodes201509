@@ -6,32 +6,32 @@
 </head>
 <body>
 <script type="text/javascript">
-        function fn() {
-            var i = 10;
-            return function (n) {
-                console.log(n + (++i));
-            }
-        }
-        var f = fn();
-        f(15);//->26
-        f(20);//->32
-        f(30);//->43
-        fn()(15);//->26
-        fn()(20);//->31
-        fn()(30);//->41
+//        function fn() {
+//            var i = 10;
+//            return function (n) {
+//                console.log(n + (++i));
+//            }
+//        }
+//        var f = fn();
+//        f(15);//->26
+//        f(20);//->32
+//        f(30);//->43
+//        fn()(15);//->26
+//        fn()(20);//->31
+//        fn()(30);//->41
 
     //思考题：
     //1、
-    function fn(i) {
-        return function (n) {
-            console.log(n + (i++));
-        }
-    }
-    var f = fn(10);
-    f(20);
-    fn(20)(40);
-    fn(30)(50);
-    f(30);
+//    function fn(i) {
+//        return function (n) {
+//            console.log(n + (i++));
+//        }
+//    }
+//    var f = fn(10);
+//    f(20);//30
+//    fn(20)(40);//60
+//    fn(30)(50);//80
+//    f(30);//41
 
     //2、
     var i = 10;
@@ -41,10 +41,10 @@
         }
     }
     var f = fn();
-    f(20);
-    fn()(20);
-    fn()(30);
-    f(30);
+    f(20);//31
+    fn()(20);//32
+    fn()(30);//43
+    f(30);//44
 </script>
 </body>
 </html>

@@ -8,7 +8,8 @@
 <script type="text/javascript">
     //1、不管条件是否成立,判断体中的内容都要进行预解释
     //    //预解释:var a; ->在全局作用域中声明一个变量相当于给window这个对象增加了一个属性名window.a=undefined;
-    //    if (!("a" in window)) {//->"a" in window 判断"a"是否为window的一个属性名,因为预解释的时候声明了a,所以"a" in window的结果是true,取反为false,条件不成立,a=12这个赋值的操作是执行不了的了
+    //    if (!("a" in window)) {//->"a" in window 判断"a"是否为window的一个属性名,因为预解释的时候声明了a,所以"a" in window
+    // 的结果是true,取反为false,条件不成立,a=12这个赋值的操作是执行不了的了
     //        var a = 12;
     //    }
     //    console.log(a);//->undefined

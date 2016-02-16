@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+#container{ width:1000px; height:300px; position:relative; background:#36C}
+#container div{ position:absolute; background-image:url(banner1.jpg); }
+</style>
+</head>
+
+<body>
+<img src="banner1.jpg" width="1000" height="300">
+<div id="container">
+
+</div>
+</body>
+</html>
+<script>
+var rows=3;
+var cols=10;
+var container=document.getElementById("container");
+var w=container.offsetWidth/cols;
+var h=container.offsetHeight/rows;
+for(var i=0;i<rows*cols;i++){
+	var ele=document.createElement("div");
+	with(ele.style){
+		width=w+"px";
+		height=h+"px";
+		
+		i%cols;//得到列号
+		Math.floor(i/cols)//得到行号
+		left=i%cols*w+"px";
+		top=Math.floor(i/cols)*h+"px";
+		
+		backgroundPosition="-"+i%cols*w+"px -"+Math.floor(i/cols)*h+"px"
+		/*
+		left=当前列数*w
+		top=当前行数*h
+		怎么把当前这个小div的列号和行号计算出来呢？
+			0 , 1, 2, 3, 4, 5, 6, 7, 8, 9
+			10,11,12,13,14,15,16,17,18,19
+			20,21,22,23,24,25,26,27,28,29
+		
+		*/
+	}
+	//if(i==14)
+		container.appendChild(ele);
+	
+}
+</script>

@@ -61,23 +61,23 @@
 
 
     //五、
-    //var ary = [12, 23, 23, 12, 24, 34, 34, 23, 34, 5, 21, 2];
+    var ary = [12, 23, 23, 12, 24, 34, 34, 23, 34, 5, 21, 2];
     //解决方案二:
     //一个对象中的属性名是不允许重复的,如果之前有的话,我后面增加的都相当于把之前的值进行修改
     //在使用for in循环遍历一个对象的属性名和属性值的时候,对于数字的属性名是提前优先遍历的,并且按照由小到大的顺序遍历
     //1)把数组中每一项的值都分别的存储到我们的对象中,此时对象中是不会出现重复的属性名的
-    //    var newAry = [];
-    //    var obj = {};
-    //    for (var i = 0; i < ary.length; i++) {
-    //        var cur = ary[i];
-    //        obj[cur] = cur;
-    //    }
+        var newAry = [];
+        var obj = {};
+        for (var i = 0; i < ary.length; i++) {
+            var cur = ary[i];
+            obj[cur] = cur;
+        }
     //2)循环我们上面的对象,把对象中的属性名在重新的添加到数组中
-    //    for (var key in obj) {
-    //        newAry[newAry.length] = obj[key];
-    //    }
-    //    obj = null;
-    //    console.log(newAry, ary);
+        for (var key in obj) {
+            newAry[newAry.length] = obj[key];
+        }
+        obj = null;
+        console.log(newAry, ary);
 
     //解决方法一：
     //去重
@@ -110,18 +110,18 @@
     //    console.log(ary);
 
     //六、
-    //    function sum() {
-    //        var total = null;//->0和null的区别? 0/""虽然也是没有但是他们是占一个内存位置的，而null是连内存位置都没有占；例如：0/""种树的时候我们先挖了个坑但是啥都没种，但是坑是有的，而null是连坑都没有挖；
-    //        for (var i = 0; i < arguments.length; i++) {
-    //            var cur = Number(arguments[i]);
-    //            if (!isNaN(cur)) {
-    //                total += cur;
-    //            }
-    //        }
-    //        return total;
-    //    }
-    //    var total = sum(12, 23, 34, 45, "56", "珠峰");
-    //    console.log(total);
+        function sum() {
+            var total = null;//->0和null的区别? 0/""虽然也是没有但是他们是占一个内存位置的，而null是连内存位置都没有占；例如：0/""种树的时候我们先挖了个坑但是啥都没种，但是坑是有的，而null是连坑都没有挖；
+            for (var i = 0; i < arguments.length; i++) {
+                var cur = Number(arguments[i]);
+                if (!isNaN(cur)) {
+                    total += cur;
+                }
+            }
+            return total;
+        }
+        var total = sum(12, 23, 34, 45, "56", "珠峰");
+        console.log(total);
 
     //七、
     //    function getRandom(n, m) {

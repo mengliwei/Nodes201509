@@ -11,14 +11,14 @@
         var n = 10;
         function b() {
             n++;
-            alert(n);
+            alert(n);//11
         }
         b();
         return b;
     }
     var c = a();
-    c();
-    alert(n);
+    c();//12
+    alert(n);//0
 </script>
 </body>
 </html>

@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+#outer{ width:500px; height:240px; margin:100px auto; position:relative; overflow:hidden; }
+#inner{ width:3000px; height:240px; position:absolute; left:0px; top:0; font-size:48px; line-height:240px; text-align:center;}
+#inner div{ float:left; width:500px; height:240px; background:green; }
+#btn{ margin:0; padding:0; list-style:none; position:absolute; bottom:30px; right:30px;  width:250px; height:35px; overflow:hidden; }
+#btn li{ float:left; width:30px; height:30px; border-radius:50%; font-size:18px; color:#fff; font-weight:bold; text-align:center; line-height:30px; margin:0 10px; cursor:pointer; background:orange; }
+#btn li.promoted{ background:#080808; color:#C30;}
+</style>
+</head>
+
+<body>
+<div id="outer">
+	<div id="inner">
+    	<div>一</div>
+        <div style="background:red;">二</div>
+        <div style="background:blue;">三</div>
+        <div style="background:yellow;">四</div>
+        <div style=" background:purple">五</div>
+    <div>666666一666666</div>
+    </div>
+    <ul id="btn"><li class="promoted">1</li><li>2</li><li>3</li><li>4</li><li>5</li></ul>
+</div>
+</body>
+</html>
+<script src="tween.js"></script>
+<script>
+var oLis=document.getElementById("btn").getElementsByTagName("li");
+for(var i=0;i<oLis.length;i++){
+	;(function(i){
+		oLis.item(i).onclick=function(){
+			animate(inner,{left:i*-500},700);
+			clearInterval(autoTimer);//把已经开启的定时器清掉了
+			//autoTimer=setInterval(autoMove,3000);//又开启了一个新的定时器
+			autoTimer=setTimeout(function(){//鼠标点击后，第一次间隔三秒，以后每次间隔两秒。两个不同的定时器套在一起，实现的定时器累加效果
+				autoTimer=setInterval(autoMove,2000);
+			},1000);
+			step=i;
+		}
+	})(i);
+}
+
+
+var step=0;
+function autoMove(){
+	//1，2，3，4，5，6（1）这会的索引号5,再往下（左）走step就累加到6，表示应该 从1到2，，2
+	//如果step等于6了,则把inner从现在的坐标切换到0
+	//inner.style.left=0;//做这样的切换，浏览器的速度小于3ms
+	//切换过来之后，再从当前这一样往索引1上运动
+	step++;
+	if(step==6){
+		//alert(step);
+		inner.style.left=0;
+		//alert(step);
+		step=1;	
+	}
+	 animate(inner,{left:step*-500},700);
+}
+var autoTimer=window.setInterval(autoMove,2000);
+
+
+function addPromoted(i){
+	//让第i个li加上promoted类样式
+	//让其它的li移除类样式	
+}
+
+
+
+</script>
