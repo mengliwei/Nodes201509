@@ -73,7 +73,8 @@
     //        mark.id = "mark";
     //        this.appendChild(mark);
     //
-    //        //->给mark绑定onmouseover事件,并且阻止其冒泡传播的行为，防止鼠标快速移动滑到mark上,触发mark的onmouseover行为的同时，也把box的onmouseover行为也触发了，导致重复的在创建mark
+    //        //->给mark绑定onmouseover事件,并且阻止其冒泡传播的行为，防止鼠标快速移动滑到mark上,触发mark的onmouseover行
+    // 为的同时，也把box的onmouseover行为也触发了，导致重复的在创建mark
     //        mark.onmouseover = function (ev) {
     //            ev = ev || window.event;
     //            ev.stopPropagation ? ev.stopPropagation() : ev.cancelBubble = true;
