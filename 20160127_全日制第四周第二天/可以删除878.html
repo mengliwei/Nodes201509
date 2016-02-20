@@ -103,12 +103,12 @@
     </style>
 </head>
 <body>
-<div class="outer">
+<div class="outer" id="outer">
     <div class="inner" id="inner"></div>
     <ul class="tip" id="tip"></ul>
     <a href="javascript:;" class="btnLeft" id="btnLeft"></a>
     <a href="javascript:;" class="btnRight" id="btnRight"></a>
-    <script charset="utf-8" src="可以删除的库2.js" type="text/javascript"></script>
+    <script charset="utf-8" src="可以删除的库.js" type="text/javascript"></script>
     <script type="text/javascript">
         var ary = ["img/banner1.jpg", "img/banner2.jpg", "img/banner3.jpg", "img/banner4.jpg"];
         var step = 0, count = ary.length, autoTimer = null;
@@ -159,13 +159,65 @@
                 tipList[i].className = tempStep === i ? "bg" : null;
             }
         }
+
+
+        //练习事件源
+        ~function () {
+            for (var i = 0; i < tipList.length; i++) {
+                tipList[i].index = i;
+                var step1 = tipList[i].index;
+                window.step1 = step1;
+            }
+        }();
+
+        var outer = document.getElementById("outer");
+        outer.onclick = function (e) {
+            e = e || window.event;
+            e.target = e.target || e.srcElement;
+            if (e.target.id === "btnRight") {
+                window.clearInterval(autoTimer);
+                autoImg();
+                autoTimer = window.setInterval(autoImg, 3000);
+                return;
+            }
+
+            if (e.target.id === "btnLeft") {
+                window.clearInterval(autoTimer);
+                step--;
+                if (step < 0) {
+                    console.log(step);
+                    inner.style.left = -count * 1000 + "px";
+                    step = count - 1;
+                }
+                animate(inner, {left: -step * 1000}, 500);
+                selectTip();
+                autoTimer = window.setInterval(autoImg, 3000);
+                return;
+            }
+//            this.setCapture();//->这个方法执行相当于用绳子把鼠标和绑定在一起了
+//            this.onmousemove = move;
+//            this.onmouseup = up;
+            /*    if (e.target.tagName.toLowerCase() === "li") {
+             window.clearInterval(autoTimer);
+             animate(inner, {left: -step1* 1000}, 500);
+             selectTip();
+             autoTimer = window.setInterval(autoImg, 3000);
+             return;
+             }*/
+
+
+        };
+
+
         //点击焦点
         tipImg();
         function tipImg() {
             window.clearInterval(autoTimer);
             for (var i = 0; i < tipList.length; i++) {
                 tipList[i].index = i;
+
                 tipList[i].onclick = function () {
+
                     window.clearInterval(autoTimer);
                     step = this.index;
                     animate(inner, {left: -step * 1000}, 500);
@@ -174,23 +226,23 @@
                 }
             }
         }
-        //左右点击
-        btnRight.onclick = function () {
-            window.clearInterval(autoTimer);
-            autoImg();
-            autoTimer = window.setInterval(autoImg, 3000);
-        };
-        btnLeft.onclick = function () {
-            window.clearInterval(autoTimer);
-            step--;
-            if (step < 0) {
-                step = count - 1;
-                inner.style.left = -count * 1000 + "px";
-            }
-            animate(inner, {left: -step * 1000}, 500);
-            selectTip();
-            autoTimer = window.setInterval(autoImg, 3000);
-        };
+        /* //左右点击
+         btnRight.onclick = function () {
+         window.clearInterval(autoTimer);
+         autoImg();
+         autoTimer = window.setInterval(autoImg, 3000);
+         };
+         btnLeft.onclick = function () {
+         window.clearInterval(autoTimer);
+         step--;
+         if (step < 0) {
+         step = count - 1;
+         inner.style.left = -count * 1000 + "px";
+         }
+         animate(inner, {left: -step * 1000}, 500);
+         selectTip();
+         autoTimer = window.setInterval(autoImg, 3000);
+         };*/
         //图片自动轮播
         function autoImg() {
             step++;

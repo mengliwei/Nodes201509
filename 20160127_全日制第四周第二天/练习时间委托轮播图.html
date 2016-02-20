@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        body, div, ul, li, a {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul, li {
+            list-style: none;
+        }
+
+        a, a:hover {
+            text-decoration: none;
+            color: #999;
+        }
+
+        #box {
+            position: relative;
+            margin: 10px auto;
+            width: 1000px;
+            height: 300px;
+            overflow: hidden;
+        }
+
+        #inner {
+            width: 4000px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 300px;
+        }
+
+        #inner div {
+            float: left;
+            width: 1000px;
+            height: 300px;
+            background: green;
+            font-size: 40px;
+            line-height: 300px;
+            text-align: center;
+            color: red;
+            font-weight: 800;
+
+        }
+
+        #box ul {
+            position: absolute;
+            right: 80px;
+            bottom: 80px;
+            overflow: hidden;
+
+        }
+
+        #box ul li {
+            float: left;
+            margin-left: 10px;
+            width: 18px;
+            height: 18px;
+            background: #ccc;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+
+        #box ul li.bg {
+            background: black;
+        }
+
+        #box a {
+            position: absolute;
+            top: 50%;
+            margin-top: -20px;
+            width: 40px;
+            height: 40px;
+            background: black;
+            opacity: 0.3;
+        }
+
+        #box a:hover {
+            opacity: 1;
+        }
+
+        #box a.btnL {
+            left: 20px;
+        }
+
+        #box a.btnR {
+            right: 20px;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <div id="inner">
+        <div>一</div>
+        <div style="background: yellow">二</div>
+        <div style="background: black">三</div>
+        <div style="background: blue">四</div>
+    </div>
+    <ul id="tip" class="tip">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <a href="javascript:;" class="btnL" id="btnL"></a>
+    <a href="javascript:;" class="btnR" id="btnR"></a>
+</div>
+<script src="可以删除的库.js" charset="utf-8" type="text/javascript"></script>
+<script type="text/javascript">
+    var inner = document.getElementById("inner"), divList = inner.getElementsByTagName("div");
+    var tip = document.getElementById("tip"), tipList = tip.getElementsByTagName("li");
+    var box=document.getElementById("box");
+    var btnL=document.getElementById("btnL"),btnR=document.getElementById("btnR");
+   /* for (var i = 0; i < tipList.length; i++) {
+        tipList[i].index = i;
+        tipList[i].onclick = function () {
+            step = this.index;
+            console.log(step);
+            animate(inner, {left: -step * 1000}, 500);
+        }
+    }*/
+    var step= 0,count=4;
+    box.onclick=function(e){
+        e||window.event;
+        e.target= e.target|| e.srcElement;
+        if(e.target.id==="btnL"){
+            step--;
+            if(step<0){
+                inner.style.width=-count*1000+"px";
+                step=count-1;
+            }
+            animate(inner, {left: -step * 1000}, 500);
+        }
+
+    }
+
+</script>
+</body>
+</html>

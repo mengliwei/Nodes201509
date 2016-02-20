@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        body, div {
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+
+        #outer {
+            margin: 20px auto;
+            padding: 20px;
+            height: 300px;
+            width: 300px;
+            background: green;
+
+        }
+
+        #inner {
+            margin: 20px auto;
+            padding: 20px;
+            height: 200px;
+            width: 200px;
+            background: red;
+
+        }
+
+        #center {
+            margin: 20px auto;
+            padding: 20px;
+            height: 100px;
+            width: 100px;
+            background: yellow;
+
+        }
+
+
+    </style>
+</head>
+<body>
+<div id="outer">
+    <div id="inner">
+        <div id="center"></div>
+    </div>
+</div>
+<script type="text/javascript">
+    //onmouseenter,onmousedown,onmouseup,onmousewheel,onscroll,onresize(window.onresize,浏览器屏幕改变大小事件),onunload,
+    //onfocus(文本框获取焦点的行为)，onblur(文本框失去焦点的行为)，onkeydown,onkeyup
+    //addEventListener这个属性是定义在当前元素所属EventTarget这个类的原型上的；
+    //MouseEvent
+    //e.type存储的是,e.preventDefault,阻止元素的默认行为，在IE6~8z中没有要用e.returnValue=false;
+    //事件的默认传播机制，
+    //捕获阶段：从外向内一次查找元素；
+    //目标阶段：当前事件源本身的操作
+    //冒泡阶段：从内到外依次触发的行为
+    //使用DOM0级事件绑定给元素的某一个行为绑定方法，
+    var outer = document.getElementById("outer"), inner = document.getElementById("inner"), center = document.getElementById("center");
+    box.onclick = function () {
+       document.body.addEventListener("click",)
+    };
+    //事件委托：利用了事件的冒泡传播机制（触发当前元素的某个行为，它父级所有元素的相关行为都被触发），如果一个容器中有很多元素都要点击
+    //事件，我们没必要一个个绑定只需要把最外面的元素绑定了，在这个方法执行的时候，只需要处理事件源即可
+</script>
+</body>
+</html>

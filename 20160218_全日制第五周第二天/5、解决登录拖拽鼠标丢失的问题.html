@@ -51,9 +51,10 @@
 </div>
 
 <script type="text/javascript">
-    //鼠标丢失问题:鼠标移动的速度过快，导致盒子和鼠标分开了，鼠标在盒子外触发onmouseup不能让盒子的onmouseup行为触发，导致盒子的move和up一直存在，当我们鼠标从新回到盒子上，不管按下还是不按下，是要鼠标动盒子也会跟着动...
+    //鼠标丢失问题:鼠标移动的速度过快，导致盒子和鼠标分开了，鼠标在盒子外触发onmouseup不能让盒子的onmouseup行为触发，导致盒
+    // 子的move和up一直存在，当我们鼠标从新回到盒子上，不管按下还是不按下，是要鼠标动盒子也会跟着动...
 
-    //在IE浏览器和火狐浏览器中->我们用一根绳子把鼠标和盒子绑一起，不管你鼠标多块盒子也掉不下来->this.setCapture(在谷歌浏览器中不兼容)
+    //在IE浏览器和火狐浏览器中->我们用一根绳子把鼠标和盒子绑一起，不管你鼠标多快盒子也掉不下来->this.setCapture(在谷歌浏览器中不兼容)
     //谷歌浏览器没有提供绳子的方法->我们把move和up绑定给document这个文档，这样不管你鼠标移动的多快，永远出不去整个文档，也就不存在丢失的问题了
 
 
@@ -74,7 +75,8 @@
         } else {
 //            document.onmousemove = move;
 //            document.onmouseup = up;
-            //->直接这样绑定不行，因为此时move中的this变为了document,我们在move中获取的值应该是存储在boxTop上的,我们在move中在使用this的话，获取的是document上存储的值，但是document没有存储->我们还需要让move和up中的this依然指向boxTop才可以
+            //->直接这样绑定不行，因为此时move中的this变为了document,我们在move中获取的值应该是存储在boxTop上的,我们在move
+// 中在使用this的话，获取的是document上存储的值，但是document没有存储->我们还需要让move和up中的this依然指向boxTop才可以
             var _this = this;
             document.onmousemove = function (e) {
                 move.call(_this, e);
