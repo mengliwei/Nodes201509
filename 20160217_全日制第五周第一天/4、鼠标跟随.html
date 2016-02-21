@@ -39,7 +39,7 @@
     var offL = box.offsetLeft, offT = box.offsetTop;
 
     //->onmouseenter相对于onmouseover把冒泡传播默认的阻止掉了
-   /* box.onmouseenter = function (e) {
+    box.onmouseenter = function (e) {
         e = e || window.event;
         var mark = document.createElement("div");
         mark.id = "mark";
@@ -62,11 +62,11 @@
         if (mark) {
             this.removeChild(mark);
         }
-    };*/
+    };
 
 
     //    //->鼠标滑到大盒子中的时候,创建mark小盒子,并且给其一个初始位置
-        box.onmouseover = function (e) {
+       /* box.onmouseover = function (e) {
             e = e || window.event;
 
             var mark = document.createElement("div");
@@ -99,16 +99,8 @@
             var mark = document.getElementById("mark");
             if (mark) {
                 this.removeChild(mark);
-                mark.onmouseout = function (ev) {
-                    ev = ev || window.event;
-                    ev.stopPropagation ? ev.stopPropagation() : ev.cancelBubble = true;
-                };
-                box.onmouseout = function (ev) {
-                    ev = ev || window.event;
-                    ev.stopPropagation ? ev.stopPropagation() : ev.cancelBubble = true;
-                };
             }
-        };
+        };*/
 </script>
 </body>
 </html>
