@@ -70,8 +70,10 @@
         e = e || window.event;
         this["mouseX"] = e.clientX;
         this["mouseY"] = e.clientY;
+
         this["boxL"] = parseFloat(box.style.left);
         this["boxT"] = parseFloat(box.style.top);
+        console.log(box.style.left);
     }
 
     //->mouseMove鼠标移动事件：获取鼠标最新的位置，计算出移动的距离，在求出盒子最新的位置

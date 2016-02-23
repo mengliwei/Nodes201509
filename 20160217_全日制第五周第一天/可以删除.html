@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        body, div, ul, li {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul, li {
+            list-style: none;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+
+        #box {
+            margin: 200px 0 0 20px;
+        }
+
+        #box ul {
+
+        }
+
+        #box ul li {
+            width: 100px;
+            height: 100px;
+            background: yellow;
+            line-height: 100px;
+            text-align: center; /*怎么让这里面的字距离和盒子10px？自己的方法是在创建一个标签放文字在margin10px*/
+        }
+
+        #box1 {
+
+        }
+
+        #box1 div {
+            display: none;
+            width: 200px;
+            height: 200px;
+            background: blue;
+            line-height: 200px;
+            text-align: center;
+        }
+
+
+    </style>
+</head>
+<body>
+<div id="box">
+    <ul>
+        <li class="0li">上面的</li>
+        <li class="1li">上面的1111111</li>
+    </ul>
+    <div id="box1">
+        <div class="0di">下面的盒子</div>
+        <div class="1di">下面的盒子22222</div>
+    </div>
+</div>
+<script type="text/javascript">
+    var box = document.getElementById("box");
+    box1 = document.getElementById("box1");
+    var oli = document.getElementById("li"), oDiv = box1.getElementsByTagName("div");
+
+
+    document.body.onmouseover = function (e) {
+        e = e || window.event;
+        var target = e.target || e.srcElement;
+        if (target.tagName.toLowerCase() === "li" || target.tagName.toLocaleLowerCase() === "div") {
+            //            var value=target.tagName.replace(li,"");
+            //            var reg = /^li\d+$/;
+            //            var value=reg.test(target.tagName)
+            var value = parseFloat(target.className) ? value : value = 3;
+            oDiv[value].style.display = "block";
+            console.log(target);
+
+            return;
+        }
+
+    }
+</script>
+</body>
+</html>
