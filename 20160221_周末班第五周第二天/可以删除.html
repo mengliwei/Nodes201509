@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+
+        #box {
+            /*position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -100px 0 0 -100px;*/
+
+            /*
+             IE下的兼容不好，主要应用于移动端的开发
+             position: absolute;
+             top: 0;
+             left: 0;
+             bottom: 0;
+             right: 0;
+             margin: auto;*/
+
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: #ff6600;
+            cursor: move;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+
+<script type="text/javascript">
+    //->JS实现让当前的元素在屏幕居中的位置
+    var box = document.getElementById("box");
+    box.style.top = ((document.documentElement.clientHeight || document.body.clientHeight) - box.offsetHeight) / 2 + "px";
+    box.style.left = ((document.documentElement.clientWidth || document.body.clientWidth) - box.offsetWidth) / 2 + "px";
+
+</script>
+
+
+</body>
+</html>

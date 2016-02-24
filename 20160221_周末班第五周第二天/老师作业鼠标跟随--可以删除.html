@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul, li {
+            list-style: none;
+        }
+
+        img {
+            display: block;
+            border: none;
+        }
+
+        a, a:hover {
+            text-decoration: none;
+            color: #ccc;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+
+        #rightLi {
+            position: relative;
+            margin: 130px 0 0 35px;
+
+        }
+
+        #rightLi ul {
+            width: 210px;
+            height: 460px;
+            border-left: 1px solid red;
+            background: red;
+        }
+
+        #rightLi ul li {
+            padding-left: 10px;
+            width: 210px;
+            height: 35px;
+            line-height: 35px;
+            text-align: left;
+            color: white;
+
+        }
+
+        #rightLi ul li:hover {
+            color: red;
+            background: white;
+            cursor: pointer;
+        }
+
+        #rightLi div {
+            position: absolute;
+            left: 211px;
+            top: 0;
+            width: 1000px;
+            height: 458px;
+            line-height: 458px;
+            text-align: center;
+            border-right: 1px solid red;
+            border-bottom: 1px solid red;
+        }
+
+        #rightLi div.chang {
+            display: none;
+
+        }
+    </style>
+</head>
+<body>
+<div id="rightLi">
+    <ul>
+        <li class="chang">手机</li>
+        <li>手机手机</li>
+        <li>手机手机手机</li>
+    </ul>
+    <div class="chang">苹果</div>
+    <div>苹果苹果</div>
+    <div>苹果苹果</div>
+</div>
+
+<div id="move">
+    <!--<div><img src="img/0.jpg"/></div>
+    <div><img src="img/1.jpg"/></div>
+    <div><img src="img/2.jpg"/></div>-->
+</div>
+<script type="text/javascript" charset="utf-8" src="js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript">
+    var rightLi = document.getElementById("rightLi"), listLi = rightLi.getElementsByTagName("li");
+    var listDiv = rightLi.getElementsByTagName("div");
+  document.body.onmouseover=function(e){
+      for(var i=0;i<listLi.length;i++){
+          listLi[i].mlw=i;
+          console.log(this.mlw);
+      }
+      if(e.target.tagName.toLowerCase()==="li"){
+
+      }
+  }
+</script>
+</body>
+</html>
