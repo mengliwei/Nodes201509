@@ -93,6 +93,7 @@
     //->实现自动轮播
     function autoMove() {
         step++;
+        console.log(step);
         if (step > count) {
             step = 1;
             inner.style.left = 0;

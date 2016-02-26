@@ -1,0 +1,225 @@
+<style type="text/css">
+    body, div {
+        margin: 0;
+        padding: 0;
+        font-family: "\5FAE\8F6F\96C5\9ED1", Helvetica, sans-serif;
+        font-size: 12px;
+    }
+
+    img {
+        display: block;
+        border: none;
+    }
+
+    ul, li {
+        list-style: none;
+    }
+
+    #tab {
+        position: relative;
+        margin: 150px 0 0 100px;
+    }
+
+    .box {
+        z-index: 20;
+        background: #F9F5F5;
+        width: 150px;
+        height: 30px;
+    }
+
+    .box .box_z {
+        font-size: 14px;
+        height: 20px;
+        padding: 5px;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    .box .box_y {
+        position: absolute;
+        top: 0;
+        margin-left: 150px;
+        background: red;
+        width: 400px;
+        height: 400px;
+        overflow: hidden;
+        display: none;
+    }
+
+    #moveBox {
+        position: absolute;
+        top: 150px;
+        left: 250px;
+        width: 730px;
+        height: 454px;
+        overflow: hidden;
+        border: 1px solid red;
+    }
+
+    #moveBox .inner {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 2190px;
+        height: 454px;
+        opacity: 0;
+    }
+
+    #moveBox .inner div {
+        float: left;
+        width: 730px;
+        height: 454px;
+        opacity: 0;
+    }
+
+    #moveBox  div img {
+        width: 100%;
+        height: 100%;
+
+    }
+
+    #moveBox .tip {
+        position: absolute;
+        top: 410px;
+        left: 311px;
+        text-align: center;
+        overflow: hidden;
+    }
+
+    #moveBox .tip li {
+        display: inline-block;
+        margin-left: 7px;
+        width: 18px;
+        height: 18px;
+        cursor: pointer;
+        background: #999;
+        border-radius: 50%;
+    }
+
+    #moveBox .tip li.bg {
+        background: #ff6600;
+    }
+
+</style>
+</head>
+<body>
+<div id="tab" class="cBlock">
+    <div class="box">
+        <div class='box_z'>gdfgdfg</div>
+        <div class=' box_y'>dfgdfgfdgdfg</div>
+    </div>
+    <div class="box">
+        <div class='box_z'>gdfgdfg</div>
+        <div class=' box_y'>dfgdfgfdgdfg2323</div>
+    </div>
+    <div class="box">
+        <div class='box_z'>gdfgdfg</div>
+        <div class=' box_y'>dfgdfgfdgdfg2323234222</div>
+    </div>
+    <div class="box">
+        <div class='box_z'>gdfgdfg</div>
+        <div class=' box_y'>dfgdfgfdgdfg333333333</div>
+    </div>
+</div>
+<div id="moveBox" class="cBlock">
+    <div class="inner" id="inner">
+        <!--<div><img src="img/0.jpg"/> </div>-->
+    </div>
+    <ul class="tip" id="tip"></ul>
+</div>
+<script charset="utf-8" src="js/animate.js" type="text/javascript"></script>
+<script type="text/javascript">
+    var tab = document.getElementById("tab");
+    var box = tab.getElementsByClassName("box");
+    //    function bind() {
+    //        var str = "";
+    //        for (var i = 0; i < JSON.length; i++) {
+    //            var cur = JSON[i];
+    //            str += "<div class='box' >";
+    //            str += "<div class='box_z'>" + cur["logo"] + "</div>";
+    //            str += "<div class='box_y'>" + cur["title"] + "</div>";
+    //            str += "</div>";
+    //        }
+    //        tab.innerHTML = str;
+    //    }
+    //    bind();
+    //  console.log(box);
+    for (var i = 0; i < box.length; i++) {
+        var boxT = box[i];
+        boxT.index = i;
+        boxT.onmouseover = function (e) {
+            e = e || window.event;
+            e.target = e.target || e.srcElement;
+            var cur = e.target;
+            if (cur.className === "box_z") {
+                cur.style.background = "green";
+                var curD = cur.nextElementSibling;
+                curD.style.display = "block";
+            } else {
+                var curG = cur.previousElementSibling;
+                curG.style.background = "green";
+                cur.style.display = "block";
+            }
+
+
+        };
+        boxT.onmouseout = function (e) {
+            e = e || window.event;
+            e.target = e.target || e.srcElement;
+            var cur = e.target;
+            if (cur.className === "box_z") {
+                cur.style.background = "#F9F5F5";
+                var curD = cur.nextElementSibling;
+                curD.style.display = "none";
+            } else {
+                var curG = cur.previousElementSibling;
+                curG.style.background = "#F9F5F5";
+                cur.style.display = "none";
+            }
+        };
+
+    }
+    //ÂÖ²¥Í¼
+    var ary = ["img/0.jpg", "img/1.jpg", "img/2.jpg"];
+    var moveBox = document.getElementById("moveBox"), inner = document.getElementById("inner");
+    var count = ary.length, step = 0, autoTimer = null, tip = document.getElementById("tip"), tipList = tip.getElementsByTagName("li"), imgList = inner.getElementsByTagName("img");
+    function bind() {
+        var str = "";
+        for (var i = 0; i < ary.length; i++) {
+            str += "<div><img src=''trueImg='" + ary[i] + "'/></div>";
+        }
+        inner.innerHTML = str;
+        inner.style.width=(count+1)*730+"px";
+        var str = "";
+        for (var i = 0; i < ary.length; i++) {
+            str += "<li></li>";
+        }
+        tip.innerHTML = str;
+    }
+    bind();
+    lazyImg();
+    function lazyImg() {
+        for (var i = 0; i < imgList.length; i++) {
+            ~function (i) {
+                var curImg = imgList[i];
+                var oImg = new Image;
+                oImg.src = curImg.getAttribute("trueImg");
+                oImg.onload = function () {
+                    curImg.src = this.src;
+                }
+            }(i);
+        }
+    }
+    function move(){
+        step++;
+        if(step>2){
+            step=0;
+            inner.style.left = 0;
+        }
+
+        inner.style.left=-step*730+"px";
+        animate(imgList, {opacity: 1}, 500);
+    }
+    autoTimer=window.setInterval(move,2000);
+
+</script>
