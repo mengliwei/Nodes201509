@@ -1,18 +1,75 @@
 <!DOCTYPE html>
 <html>
-<head >
+<head>
     <meta charset="UTF-8">
     <title></title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul, li {
+            list-style: none;
+        }
+
+        #box {
+            position: relative;
+            margin: 50px auto;
+            width: 300px;
+            height: 300px;
+            overflow: hidden;
+        }
+
+        #box div {
+            float: left;
+            width: 300px;
+            height: 300px;
+            line-height: 300px;
+            text-align: center;
+        }
+
+        #box ul {
+            position: absolute;
+            right: 20px;
+            bottom: 20px;
+        }
+
+        #box ul li {
+            float: left;
+            margin-left: 6px;
+            width: 20px;
+            height: 20px;
+            background: #ccc;
+            border-radius: 50%;
+        }
+
+        #box ul li.mlw {
+            background: black;
+        }
+    </style>
 </head>
 <body>
-
+<div id="box">
+    <div style="background: yellow">是打发</div>
+    <div style="background: red">电饭锅电饭锅</div>
+    <div style="background: blue">感觉很干净</div>
+    <ul>
+        <li class="mlw"></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
 </body>
 <script type="text/javascript">
-    var ary=[1,1,2,3];cur={};
-    for(var i=0;i<ary.length;i++){
-        var cur=ary[i];
-        if(cur==cur[i]){
-            return
+    var box = document.getElementById("box"), liList = box.getElementsByTagName("li"), divList = box.getElementsByTagName("div");
+    box.onmouseover=function(e){
+
+    };
+    for(var i=0;i<liList.length;i++){
+        liList[i].index=i;
+        liList[i].onmouseover=function(){
+            liList[this.index].className="mlw";
         }
     }
 </script>

@@ -3,8 +3,156 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0
+        }
+
+        img {
+            display: block;
+            border: none;
+        }
+
+        ul, li {
+            list-style: none;
+        }
+
+        #box {
+            position: relative;
+            margin: 50px auto;
+            width: 730px;
+            height: 454px;
+            overflow: hidden;
+        }
+
+        #box div {
+
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 454px;
+
+        }
+
+        #box div img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 0;
+
+        }
+
+        #box div img.mlw {
+            z-index: 1;
+            opacity: 1;
+
+        }
+
+        #box ul {
+            z-index: 1;
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            margin-left: -36px;
+        }
+
+        #box ul li {
+            float: left;
+            margin-left: 6px;
+            width: 18px;
+            height: 18px;
+            background: #ccc;
+            border-radius: 50%;
+        }
+
+        #box ul li.colour {
+            background: yellow;
+        }
+
+    </style>
 </head>
 <body>
+<div id="box" class="box">
+    <div><img src="img/0.jpg" alt="" class="mlw"/><img src="img/1.jpg" alt=""/><img src="img/2.jpg" alt=""/>
+    </div>
+    <ul>
+        <li class="colour"></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+<script charset="utf-8" type="text/javascript" src="js/animate.js"></script>
+<script type="text/javascript">
+    var box = document.getElementById("box"), imgList = box.getElementsByTagName("img"), liList = box.getElementsByTagName("li");
+    var step = 3, imgDiv = box.getElementsByTagName("div")[0];
+    /*   for(var i=0;i<imgList.length;i++){
+     imgList[i].className="mlw";
+     }*/
+    function select() {
+        for (var i = 0; i < liList.length; i++) {
+            if (i !== step) {
+                liList[i].className = null;
+            }
+            liList[step].className = "colour";
+        }
+    }
+    var autoTimer = window.setInterval(move, 2000);
+    function move() {
+        step++;
+        if (step >= imgList.length) {
+            step = 0;
+        }
+        /* animate(imgDiv,{left:-step*730},500);*/
+        imgList[step].className = "mlw";
+        animate(imgList[step], {opacity: 1}, 500);
+        for (var i = 0; i < imgList.length; i++) {
+            if (i !== step) {
+                imgList[i].className = null;
+                animate(imgList[i], {opacity: 0}, 500);
+                select();
+            }
+        }
+    }
 
+    box.onmouseover = function (e) {
+        e = e || window.event;
+        var target = e.target || e.srcElement;
+        if (target.tagName.toLowerCase() === "li" || target.tagName.toLowerCase() == "ul" || target.tagName.toLowerCase() == "img") {
+            window.clearInterval(autoTimer);
+        }
+      /*  if (target.tagName.toLowerCase() === "li") {
+
+        }*/
+
+    };
+    box.onmouseout = function (e) {
+        e = e || window.event;
+        var target = e.target || e.srcElement;
+        autoTimer = window.setInterval(move, 2000);
+    };
+    onmousmoveLi();
+    function onmousmoveLi(){
+        for(var i=0;i<liList.length;i++){
+            liList[i].index=i;
+            liList[i].onmouseenter=function (){
+                window.clearInterval(autoTimer);
+                step=this.index;
+                imgList[step].className = "mlw";
+                animate(imgList[step], {opacity: 1}, 500);
+                for (var i = 0; i < imgList.length; i++) {
+                    if (i !== step) {
+                        imgList[i].className = null;
+                        animate(imgList[i], {opacity: 0}, 500);
+                        select();
+                    }  }
+            };
+            liList[i].onmouseleave=function (){
+                autoTimer = window.setInterval(move, 2000);
+            }
+        }
+    }
+
+</script>
 </body>
 </html>
