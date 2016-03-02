@@ -4,16 +4,9 @@
     <meta charset="UTF-8">
     <title></title>
     <style type="text/css">
-        body, div, a, em, span, img, dl, dd, h4 {
+        * {
             margin: 0;
             padding: 0;
-            font-size: 12px;
-            font-family: "Microsoft YaHei";
-        }
-
-        a, a:hover {
-            text-decoration: none;
-            color: white;
         }
 
         img {
@@ -21,206 +14,35 @@
             border: none;
         }
 
-        html, body {
-            width: 100%;
-            height: 100%;
+        a, a:hover {
+        }
+
+        ul, li {
+            list-style: none;
         }
 
         #navigation {
             position: relative;
             height: 50px;
-            background: #333;
+            background: black;
         }
 
-        #navigation .header .logo {
-            position: absolute;
-            margin-top: 6px;
-            left: 180px;
-            top: 0;
+        #navigation .logo a{
         }
-
-        #navigation .header .logo a {
-            height: 50px;
-            line-height: 50px;
-        }
-
-        #navigation .header .logo a img {
-            width: 100%;
-            height: 100%;
-        }
-
-        #navigation .header .logo a em {
-            display: none;
-            position: absolute;
-            left: 110px;
-            top: 3px;
-            height: 16px;
-            width: 16px;
-            background: #999;
-            overflow: hidden;
-            cursor: pointer;
-        }
-
-        #navigation .header .logo em img {
-            position: absolute;
-            top: -160px;
-        }
-
-        #navigation .quick-menu {
-            position: absolute;
-            right: 220px;
-            width: 225px;
-            color: white;
-        }
-
-        #navigation .quick-menu .line-quick-menu {
-            display: inline-block;
-            height: 50px;
-            line-height: 50px;
+        #navigation .logo a img{
 
         }
-
-        #navigation .quick-menu .line-quick-menu a {
-            margin-left: 15px;
-            opacity: 0.5;
-            filter: alpha(opacity=50);
-        }
-
-        #navigation .quick-menu .line-quick-menu a:hover {
-            opacity: 1;
-            filter: alpha(opacity=100);
-        }
-
-        #navigation .quick-menu .line-quick-menu span {
-            margin-left: 12px;
-            opacity: 0.5;
-            filter: alpha(opacity=50);
-        }
-
-        #navigation .quick-menu .spliter {
-            margin-left: 12px;
-
-        }
-
-        #navigation .quick-menu .spliter a {
-            opacity: 0.5;
-            filter: alpha(opacity=50);
-        }
-
-        #navigation .quick-menu .spliter a:hover {
-            opacity: 1;
-            filter: alpha(opacity=100);
-        }
-
-        #navigation .quick-menu .spliter .drop-tips {
-            position: absolute;
-            top: 45px;
-            left: 105px;
-            width: 282px;
-            height: 182px;
-            background: white;
-            border: solid 2px #999;
-        }
-
-        #navigation .quick-menu .spliter .drop-tips h4 {
-            display: inline-block;
-            padding: 15px;
-            width: 252px;
-            text-align: left;
-            color: #999;
-            font-family: inherit;
-            font-size: 16px;
-            border-bottom: dotted 1px #ccc;
-        }
-
-        #navigation .quick-menu .spliter .drop-tips .clearfix {
-            position: absolute;
-            padding: 16px 20px;
-        }
-
-        #navigation .quick-menu .spliter .drop-tips .clearfix .btnApple {
-
-            position: absolute;
-            top: 25px;
-            left: 140px;
-            width: 118px;
-            height: 34px;
-
-            background: #3d9ccc;
-            border-radius: 4px;
-
-        }
-
-        #navigation .quick-menu .spliter .drop-tips .clearfix .btnApple a {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            margin-left: -8px;
-            margin-top: -8px; ;
-            height: 16px;
-            width: 16px;
-            overflow: hidden;
-            opacity: 1;
-            filter: alpha(opacity=100);
-
-        }
-
-        #navigation .quick-menu .spliter .drop-tips .clearfix .btnAndre {
-
-            position: absolute;
-            top: 70px;
-            left: 140px;
-            width: 118px;
-            height: 34px;
-            background: #3d9ccc;
-            border-radius: 4px;
-            overflow: hidden;
-        }
-        #navigation .quick-menu .spliter .drop-tips .clearfix .btnAndre a {
-            position: absolute;
-            left: 50%;
-            top: 0;
-            margin-left: -8px;
-         margin-top: -8px;
-            height: 50px;
-            width: 16px;
-            background-position:10px 0 ;
-            overflow: hidden;
-            opacity: 1;
-            filter: alpha(opacity=100);
-
-        }
-
     </style>
 </head>
-<header id="navigation"><!--上面导航条-->
-    <div class="header">
-        <div class="logo">
-            <a href="http://www.liepin.com/" rel="猎聘LOGO" target="_blank"><img src="img/logo_e062b0a3.png"/>
-                <em><img src="img/icons16_909f7ce4.png"/></em></a>
-        </div>
-        <div class="quick-menu">
-            <div class="line-quick-menu">
-                <a href="">我是猎头</a>
-                <a href="">我是企业HR</a>
-                <span>|</span>
-            </div>
-            <span class="spliter">
-                <a href="http://sns.liepin.com/tongdao-app/index.html?mscid=c_a1_050#sfrom=click-pc_homepage-front_navigation-mobile_new">手机猎聘</a>
-                <div class="drop-tips">
-                    <h4>猎聘同道客户端</h4>
-                    <dl class="clearfix">
-                        <dt><img src="img/qcode_06d04da2.jpg"></dt>
-                        <dd class="btnApple"><a href="http://itunes.apple.com/cn/app/id540996859?mt=8"
-                                                target="_blank"><img src="img/icons16_909f7ce4.png">IOS下载</a></dd>
-                        <dd class="btnAndre"><a href="" target="_blank"><img
-                                src="img/icons16_909f7ce4.png">Andriod下载</a></dd>
-                    </dl>
-                </div>
-            </span>
-        </div>
+<div id="navigation"><!--上面导航条-->
+    <div class="logo">
+        <a href="" target="_blank"><img src="img/logo_e062b0a3.png" alt=""/></a>
     </div>
-</header>
+    <div class="logo-right"><a>我是猎头</a><a href="">我是企业HR</a>
+        <span>|</span>
+        <span><a href=""><i></i>手机猎聘</a></span>
+    </div>
+</div>
 <div id="middle"></div>
 <!--中间部分-->
 <div id="bottomContents"></div>
