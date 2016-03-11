@@ -92,7 +92,7 @@
         <li><a href="javascript:;">珠峰培训好吗?</a></li>
     </ul>
 </div>
-
+<script charset="utf-8" src="js/jquery-1.11.3.js" type="text/javascript"></script>
 <script type="text/javascript">
     var searchList = document.getElementById("searchList"), searchInp = document.getElementById("searchInp");
 
@@ -100,7 +100,22 @@
     //->文本框中键盘抬起(输入了内容)事件：操作和上述一样
     searchInp.onfocus = searchInp.onkeyup = function () {
         var val = this.value.replace(/(^ +| +$)/g, "");//->获取文本框中的内容并且去除字符串的首尾空格
-        searchList.style.display = val.length === 0 ? "none" : "block";
+       if(val.length>0){
+           $.ajax({
+               url:"https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd="+val+"&_="+Math.random(),
+               type:"get",
+                   dataType:"jsonp",
+                   jsonp:"cd",
+               jsonpCallback:"zhufeng",
+               success:function(data){
+                   data=data?data["s"]:[];
+               }
+
+
+           })
+       }else{
+
+    }
     };
 
     //->使用事件委托给body绑定点击事件，通过事件源做不同的处理
